@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.core;
+package edu.chl.recipebok.core;
 
 import lombok.*;
 import javax.persistence.*;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-//@Table( name="Recipe")
+@Table( name="recipe")
 public class Recipe implements Serializable {
 
     @Id

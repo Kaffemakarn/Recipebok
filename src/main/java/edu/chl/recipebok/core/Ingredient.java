@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.core;
+package edu.chl.recipebok.core;
 
+import java.io.Serializable;
 import lombok.*;
 import javax.persistence.*;
 
@@ -16,8 +17,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = {"id", "name"})
 @Entity
 //@IdClass(IngredientPK.class)
-//@Table( name="ingredient")
-public class Ingredient {
+@Table( name="ingredient")
+public class Ingredient implements Serializable {
 
     @Id
     @Getter
