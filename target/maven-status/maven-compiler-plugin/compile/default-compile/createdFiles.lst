@@ -1,0 +1,4 @@
+edu\chl\recipebok\core\Ingredient.class
+edu\chl\recipebok\core\Recipe.class
+edu\chl\recipebok\dao\AbstractQuery.class
+edu\chl\recipebok\dao\AbstractDAO.class
