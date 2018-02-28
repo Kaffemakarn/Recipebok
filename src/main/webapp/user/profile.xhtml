@@ -5,24 +5,25 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:outputStylesheet library="css" name="default.css"  />
     
     <ui:define name="content"> 
 
         <b:container >
             <b:row>
                 <b:column span="12">
-                    <h2>Profile</h2>
+                    <h2 style="margin-bottom: 0;">Profile</h2>
                 </b:column>
             </b:row>
             <b:row>
                 
             </b:row>
             <b:row>
-                <b:jumbotron> 
-                    <p>This is the profile speaking..</p>
+                <b:jumbotron style="height:250px;background-image: url(../resources/img/welcome_banner.jpg);background-size: cover; background-position: center center;"> 
+                    <p style="color: #FFFFFF;">This is the profile speaking..</p>
                 </b:jumbotron>
             </b:row>
-        </b:container>   
+        </b:container>
 
     </ui:define>
     
