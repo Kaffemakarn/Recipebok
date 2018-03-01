@@ -16,22 +16,22 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 public class User {
-    
-    
+
     @Getter
-    @Setter
+    // @Setter //TODO primary key should be immutable. Make username key instead, so user can change email?
     @Id
     private String email;
     
     @Getter
     @Setter
+    @Column(unique=true)
     private String username;
     
     @Getter
     @Setter
-    private String picture;
+    private String picture; //TODO Find out how to handle images.
     
-    public User(String email, String username, String pictrure){
+    public User(String email, String username, String picture){
         this.email = email;
         this.username = username;
         this.picture = picture;
