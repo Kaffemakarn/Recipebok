@@ -2,8 +2,6 @@ package edu.chl.recipebok.core;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 /**
@@ -11,25 +9,23 @@ import java.io.Serializable;
  * @author August
  */
 @EqualsAndHashCode
-public class RecipePK implements Serializable {
+public class CookbookRecipePK implements Serializable {
 
     @Getter
-    private String creator;
+    private String cookbookId;
 
     @Getter
     private String recipeId;
 
-
-    public RecipePK(String creator, String recipeId) {
-        this.creator = creator;
+    public CookbookRecipePK(String cookbookId, String recipeId) {
+        this.cookbookId = cookbookId;
         this.recipeId = recipeId;
     }
 
-
     @Override
     public String toString() {
-        return "RecipePK{" +
-                "creator ='" + creator + '\'' +
+        return "CookbookRecipePK{" +
+                "cookbookId='" + cookbookId + '\'' +
                 ", recipeId='" + recipeId + '\'' +
                 '}';
     }

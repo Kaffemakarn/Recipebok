@@ -16,13 +16,13 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table( name="recipe")
+//@Table(name="recipe") // TODO should become "Recipe" by default, is that ok?
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
 public class Recipe implements Serializable {
 
     @Id
+    @GeneratedValue
     @Getter
-    @Setter
-    @Column(nullable=false)
     private String id;
 
     @Getter

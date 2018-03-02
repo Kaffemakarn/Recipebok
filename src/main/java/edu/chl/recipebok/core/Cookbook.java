@@ -3,22 +3,23 @@ package edu.chl.recipebok.core;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @NoArgsConstructor
-@EqualsAndHashCode()
+@EqualsAndHashCode
 @Entity
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
 public class Cookbook implements Serializable {
 
     @Id
+    @GeneratedValue
     @Getter
-    @Setter
+    //@Setter
     private String id;
 
     @Getter
     @Setter
     @Column(nullable=false)
-    private String userID;
+    private String userId;
 
     @Getter
     @Setter
@@ -26,29 +27,19 @@ public class Cookbook implements Serializable {
     private String cookbookName;
 
 
-
-    public Cookbook(String id, String userID, String cookbookName)
+    public Cookbook(String id, String userId, String cookbookName)
     {
         this.id = id;
-        this.userID =userID;
+        this.userId = userId;
         this.cookbookName = cookbookName;
-
     }
 
 
     @Override
     public String toString(){
-        return "Cookbook{" + "id = " + id +
-                ", userID = " + userID +
+        return "Cookbook{" + /* "id = " + id +
+                ", */"userId = " + userId +
                 ", Cookbook Name = " + cookbookName + "}";
     }
-
-
-
-
-
-
-    // old code
-
 
 }
