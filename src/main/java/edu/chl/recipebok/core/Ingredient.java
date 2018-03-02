@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @author Mickaela
  */
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "name"})
+@EqualsAndHashCode
 @Entity
 //@IdClass(IngredientPK.class)
 @Table( name="ingredient")

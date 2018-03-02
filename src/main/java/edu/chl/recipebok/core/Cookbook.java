@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NoArgsConstructor
-@EqualsAndHashCode()
+@EqualsAndHashCode
 @Entity
 @Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
 public class Cookbook implements Serializable {
