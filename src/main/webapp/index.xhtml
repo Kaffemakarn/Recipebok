@@ -12,34 +12,36 @@
         <b:container>
             <b:row>
                 <b:column span="12">
-                    <h2 style="margin-bottom: 0;">Home</h2>
+                    <h2>Home</h2>
                 </b:column>
             </b:row>
             <b:row>
                 
             </b:row>
-            <b:row style="margin-top: 0;">
-                <b:jumbotron style="margin-bottom: 3px;height:250px;background-image: url(resources/img/welcome_banner.jpg);background-size: cover; background-position: center center;"> 
+            <b:row>
+                <b:jumbotron style="margin-bottom: 15px;height:250px;background-image: url(resources/img/welcome_banner.jpg);background-size: cover; background-position: center center; border-radius: 0;"> 
                     <h1 style="color: #FFFFFF; text-align: center;margin-bottom: 0;">Welcome to Recipebok</h1>
                     <h3 style="color: #FFFFFF; text-align: center;">The place where your favorite recipes live</h3>
                 </b:jumbotron>
             </b:row>
         </b:container>   
+        
 
         <b:container style="background-color: #EEEEEE; height:200px;">
             <b:row>
-                <b:column col-sm="6" col-md="4">
-                    <b:thumbnail span="8">
-                    <b:image name="test" value="resources/img/thumbnail.svg" style="height:150px; width: 100%;"/>
-                    <f:facet name="caption">
-                      <h3 style="margin-top: 0;text-align: center;">Thumbnail label</h3>
-                      <p>
-                      <b:button icon-awesome="fa-heart"/>
-                      </p>
-                    </f:facet>
-                  </b:thumbnail>
-                </b:column>
-                ...
+                <b:dataTable id="recipeTable" var="r" value="#{recipebean.findAll()}">
+                    <b:column col-sm="6" col-md="4">
+                        <b:thumbnail span="8">
+                        <b:image name="#{r.name}" value="#{r.img}" style="height:150px; width: 100%;"/>
+                        <f:facet name="caption">
+                            <h3 value="#{r.name}" style="margin-top: 0;text-align: center;"/>
+                          <p>
+                          <b:button icon-awesome="fa-heart"/>
+                          </p>
+                        </f:facet>
+                      </b:thumbnail>
+                    </b:column>
+                </b:dataTable>
               </b:row>
         </b:container>
         

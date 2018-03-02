@@ -14,14 +14,14 @@
         
         <c:set var="root" value="#{request.contextPath}" /> 
         
-        <b:navBar brand="Recipebook" brandHref="${root}/index.xhtml" fixed="top" inverse="true">
-            <b:navbarLinks>
-                <b:navLink value="Home" href="${root}/index.xhtml"></b:navLink>
-                <b:navLink value="Dont Click Me" href="${root}/author/list.xhtml"></b:navLink>
-                <b:navLink value="Profile" href="${root}/user/profile.xhtml"></b:navLink>
-            </b:navbarLinks>
-        </b:navBar>
-        
+            <b:navBar brand="Recipebook" brandHref="${root}/index.xhtml" fixed="top" inverse="true">
+                <b:navbarLinks>
+                    <b:navLink value="Home" href="${root}/index.xhtml"></b:navLink>
+                    <b:navLink value="Dont Click Me" href="${root}/author/list.xhtml"></b:navLink>
+                    <b:navLink value="Profile" href="${root}/user/profile.xhtml"></b:navLink>
+                </b:navbarLinks>
+            </b:navBar>
+
         <b:container>
             <ui:insert name="content"/>
         </b:container>
