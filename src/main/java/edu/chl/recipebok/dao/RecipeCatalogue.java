@@ -7,6 +7,7 @@ package edu.chl.recipebok.dao;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.QRecipe;
 import static java.lang.System.out;
 import java.util.List;
 import javax.persistence.EntityManager;
