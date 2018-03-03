@@ -43,7 +43,7 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Recipe> found = qf.select(recipe)
                 .from(recipe)
-                .where(recipe.firstName.eq(name))
+                .where(recipe.name.eq(name))
                 .fetch();
         out.println(found);
         return found;
