@@ -5,10 +5,86 @@
  */
 package edu.chl.recipebok.control;
 
+import edu.chl.recipebok.util.ExceptionHandler;
+import edu.chl.recipebok.core.User;
+import edu.chl.recipebok.dao.UserCatalogue;
+import java.io.Serializable;
+import static java.lang.System.out;
+import java.text.Normalizer;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import lombok.Getter;
+import lombok.Setter;
+import net.bootsfaces.component.dataTable.DataTable;
+import net.bootsfaces.utils.FacesMessages;
+
 /**
  *
  * @author rahadadgar
  */
-public class UserBean {
+public class UserBean implements Serializable {
+    
+    private static final Logger LOG = Logger.getLogger(UserBean.class.getName());
+    @EJB
+    private UserCatalogue ucat;
+    @Getter
+    @Setter
+    private User tmp = new User();
+    private final int start = 0;
+    private int nRecords = 50;
+
+    @Getter
+    @Setter
+    private Normalizer.Form form;
+
+    @PostConstruct
+    void post() {
+        out.println(this + "Alive");
+    }
+
+    public void page() {
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
+       
+       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+    }
+    // ------------ Navigation -------------------
+
+    public void cancel() {
+        tmp = new User();
+    }
+
+    // --------- Call backend -------------------------
+    public void setRecipe() {
+        tmp = ucat.find(tmp.getEmail());
+    }
+
+    public List<User> findAll() {
+        return ucat.findAll();
+    }
+
+    public void add() {
+        try {
+            ucat.create(tmp);
+            FacesMessages.info("Success");
+        } catch (RuntimeException sql) {
+            String message = ExceptionHandler.getMessage(sql);
+            FacesMessages.info("Fail " + message);
+        }
+        tmp = new User();
+    }
+
+    public void update() {
+        ucat.update(tmp);
+        tmp = new User();
+    }
+
+    public void delete() {
+        ucat.delete(tmp.getEmail());
+        tmp = new User();
+    }
     
 }
