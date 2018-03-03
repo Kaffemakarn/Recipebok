@@ -58,7 +58,7 @@ public class UserBean implements Serializable {
     }
 
     // --------- Call backend -------------------------
-    public void setRecipe() {
+    public void setUser() {
         tmp = ucat.find(tmp.getEmail());
     }
 
