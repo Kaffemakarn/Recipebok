@@ -7,6 +7,7 @@ package edu.chl.recipebok.dao;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.QRecipe;
 import static java.lang.System.out;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -42,7 +43,7 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Recipe> found = qf.select(recipe)
                 .from(recipe)
-                .where(recipe.firstName.eq(name))
+                .where(recipe.name.eq(name))
                 .fetch();
         out.println(found);
         return found;
