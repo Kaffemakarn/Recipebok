@@ -26,7 +26,6 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(edu.chl.recipebok.rest.RecipeResource.class);
-        resources.add(edu.chl.recipebok.rest.BookResource.class);
         resources.add(edu.chl.recipebok.rest.CORSFilter.class);
         resources.add(edu.chl.recipebok.rest.DatabaseResource.class);
     }
