@@ -40,7 +40,7 @@ public class CookbookCatalogue extends AbstractQuery<Cookbook, String> {
                 .from(cookbook)
                 .where(cookbook.username.eq(username))
                 .fetch();
-        out.println(found);
+        System.out.println(found);
         return found;
     }*/
     
