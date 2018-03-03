@@ -29,6 +29,10 @@ public class Recipe implements Serializable {
     @Setter
     @Column(nullable=false)
     private String name;
+    
+    @Getter
+    @Setter
+    private String instructions;
 
     @Getter
     @Setter
@@ -42,9 +46,10 @@ public class Recipe implements Serializable {
 
     // TODO add image
 
-    public Recipe(String id, String name, String creator, String creationTime){
+    public Recipe(String id, String name, String instructions, String creator, String creationTime){
         this.id = id;
         this.name = name;
+        this.instructions = instructions;
         this.creator = creator;
         this.creationTime = creationTime;
     }
