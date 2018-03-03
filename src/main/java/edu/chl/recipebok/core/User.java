@@ -5,6 +5,7 @@
  */
 package edu.chl.recipebok.core;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.*;
 
@@ -15,10 +16,10 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-public class User {
+//TODO "User is a reserved SQL99 keyword"? 
+public class User implements Serializable {
 
     @Getter
-    // @Setter //TODO primary key should be immutable. Make username key instead, so user can change email?
     @Id
     private String email;
     
