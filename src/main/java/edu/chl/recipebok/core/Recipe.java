@@ -54,6 +54,7 @@ public class Recipe implements Serializable {
         this.creationTime = creationTime;
     }
 
+    @Override
     public String toString() {
         return "Recipe{" + "id=" + id + ", name=" + name + ", creator=" + creator + ", creationTime=" + creationTime + "}";
     }
