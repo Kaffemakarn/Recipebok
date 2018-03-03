@@ -32,7 +32,7 @@ public class CookbookBean implements Serializable {
     
      private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
     @EJB
-    private RecipeCatalogue rcat;
+    private CookBookCatalogue cbCat;
     @Getter
     @Setter
     private Cookbook tmp = new Cookbook();
@@ -47,5 +47,45 @@ public class CookbookBean implements Serializable {
     void post() {
         out.println(this + "Alive");
     }
+
+
+  public void page() {
+        /*Map<String, String> map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        for( Entry<String, String> e : map.entrySet()){
+        LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
+        }*/
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
+       
+       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+    }   
+  
+   // ------------ Navigation -------------------
+
+    public void cancel() {
+        tmp = new Cookbook();
+    }
     
+      // --------- Call backend -------------------------
+    public void setCookbook() {
+       tmp = cbCat.find(tmp.getId());
+    }
+
+     public List<Cookbook> findAll() {
+        return cbCat.findAll();
+    }
+     
+    public void add() {
+        /*tmp.setAddress(DataSupplier.getRandomAddress());
+        try {
+            rcat.create(tmp);
+            FacesMessages.info("Success");
+        } catch (RuntimeException sql) {
+            String message = ExceptionHandler.getMessage(sql);
+            FacesMessages.info("Fail " + message);
+        }
+        tmp = new Recipe();*/
+    }
+ 
+
 }
+

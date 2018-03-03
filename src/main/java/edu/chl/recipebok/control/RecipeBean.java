@@ -31,7 +31,7 @@ import net.bootsfaces.utils.FacesMessages;
 @SessionScoped
 public class RecipeBean implements Serializable {
 
-    private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
+   private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
     @EJB
     private RecipeCatalogue rcat;
     @Getter
@@ -90,6 +90,4 @@ public class RecipeBean implements Serializable {
         rcat.delete(tmp.getId());
         tmp = new Recipe();
     }
-
 }
-
