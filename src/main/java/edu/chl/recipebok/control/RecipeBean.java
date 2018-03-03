@@ -61,7 +61,7 @@ public class RecipeBean implements Serializable {
     }
 
     // --------- Call backend -------------------------
-    public void setAuthor() {
+    public void setRecipe() {
         tmp = rcat.find(tmp.getId());
     }
 
