@@ -64,7 +64,7 @@ public class IngredientBean implements Serializable{
     
   // --------- Call backend -------------------------
     public void setIngredient() {
-        tmp = ibCat.find(tmp.getname);
+        tmp = (Ingredient) ibCat.findByName(tmp.getName());
     }
 
    
