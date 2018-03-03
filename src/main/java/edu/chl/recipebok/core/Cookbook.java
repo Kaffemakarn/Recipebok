@@ -24,14 +24,14 @@ public class Cookbook implements Serializable {
     @Getter
     @Setter
     @Column(nullable=false)
-    private String cookbookName;
+    private String name;
 
 
-    public Cookbook(String id, String userId, String cookbookName)
+    public Cookbook(String id, String userId, String name)
     {
         this.id = id;
         this.userId = userId;
-        this.cookbookName = cookbookName;
+        this.name = name;
     }
 
 
@@ -39,7 +39,7 @@ public class Cookbook implements Serializable {
     public String toString(){
         return "Cookbook{" + /* "id = " + id +
                 ", */"userId = " + userId +
-                ", Cookbook Name = " + cookbookName + "}";
+                ", Cookbook Name = " + name + "}";
     }
 
 }

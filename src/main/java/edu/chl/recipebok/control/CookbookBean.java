@@ -6,6 +6,7 @@
 package edu.chl.recipebok.control;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.dao.CookbookCatalogue;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -32,7 +33,7 @@ public class CookbookBean implements Serializable {
     
      private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
     @EJB
-    private CookBookCatalogue cbCat;
+    private CookbookCatalogue cbCat;
     @Getter
     @Setter
     private Cookbook tmp = new Cookbook();
@@ -58,6 +59,7 @@ public class CookbookBean implements Serializable {
        
        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }   
+  
   
    // ------------ Navigation -------------------
 
@@ -86,6 +88,14 @@ public class CookbookBean implements Serializable {
         tmp = new Recipe();*/
     }
  
+    public void update() {
+        cbCat.update(tmp);
+        tmp = new Cookbook();
+    }
 
+     public void delete() {
+        cbCat.delete(tmp.getId());
+        tmp = new Cookbook();
+    }
 }
 
