@@ -90,4 +90,49 @@ public class RecipeBean implements Serializable {
         rcat.delete(tmp.getId());
         tmp = new Recipe();
     }
+    
+    
+    // Find recipes by user
+    public List<Recipe> findByUser(String user) {
+        return rcat.findByUser(user);
+    }
+    
+    // Find recipes by recipe name
+    public List<Recipe> findByName(String name) {
+        return rcat.findByName(name);
+    }
+    
+      // Find a recipe by user and recipe name
+    public Recipe findByUserAndName(String user, String name) {
+        return rcat.findByUserAndName(user, name);
+    }
+
+    // Find Recipes by Cookbook
+    public List<Recipe> findByCookbook(String cookbookId) {
+        return rcat.findByCookbook(cookbookId);
+    }
+
+
+    // Find all Recipes that belong to a specified category
+    public List<Recipe> findByCategory(String category) {
+        return rcat.findByCategory(category);
+    }
+    
+    // Find Recipes that belong to all the specified categories
+    public List<Recipe> findByCategories(List<String> categories) {
+        return rcat.findByCategories(categories);
+    }
+    
+    
+    // Find Recipes that use the specified ingredient. 
+    public List<Recipe> findByIngredient(String ingredient) {
+        return rcat.findByIngredient(ingredient);
+    }
+    
+    
+    // Find Recipes that use all the specified ingredients
+    public List<Recipe> findByIngredients(List<String> ingredients) {
+        return rcat.findByIngredients(ingredients);
+    }
+    
 }
