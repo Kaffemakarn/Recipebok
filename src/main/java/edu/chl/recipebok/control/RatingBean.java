@@ -22,9 +22,9 @@ import net.bootsfaces.component.form.Form;
  *
  * @author Sabrina
  */
-@Named("rating")
+//@Named("rating")
 //@RequestScoped
-@SessionScoped
+//@SessionScoped
 public class RatingBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(RatingBean.class.getName());
@@ -52,9 +52,10 @@ public class RatingBean implements Serializable {
         }*/
         
         //TODO needs to be changed - what do we actually do with stuff?
-        DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
         
-        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+        //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
+        
+        //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
     // ------------ Navigation -------------------
 

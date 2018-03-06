@@ -25,9 +25,9 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author Mickaela
  */
-@Named("recipebean")
+//@Named("recipebean")
 //@RequestScoped
-@SessionScoped
+//@SessionScoped
 public class RecipeBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
@@ -49,9 +49,9 @@ public class RecipeBean implements Serializable {
     }
 
     public void page() {
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
+       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
        
-       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
     // ------------ Navigation -------------------
 

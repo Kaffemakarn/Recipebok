@@ -25,9 +25,9 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author rahadadgar
  */
-@Named("cookbookbean")
+//@Named("cookbookbean")
 //@RequestScoped
-@SessionScoped
+//@SessionScoped
 public class CookbookBean implements Serializable {
     
     private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
@@ -54,9 +54,9 @@ public class CookbookBean implements Serializable {
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
+       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
        
-       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }   
   
   

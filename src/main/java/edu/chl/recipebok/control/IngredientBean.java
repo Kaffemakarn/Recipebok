@@ -27,9 +27,9 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author rahadadgar
  */
-@Named("ingredientbean")
+//@Named("ingredientbean")
 //@RequestScoped
-@SessionScoped
+//@SessionScoped
 
 public class IngredientBean implements Serializable{
  private static final Logger LOG = Logger.getLogger(IngredientBean.class.getName());
@@ -50,9 +50,9 @@ public class IngredientBean implements Serializable{
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
+       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
        
-       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
       
        // ------------ Navigation -------------------
