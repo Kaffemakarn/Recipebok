@@ -45,4 +45,17 @@ public class UserCatalogue extends AbstractQuery<User, String> {
         out.println(found);
         return found;
     }   
+    
+    
+      public User findByUserMail(String email) {
+        QUser user = QUser.user;
+        JPAQueryFactory qf = new JPAQueryFactory(em);
+        List<User> foundList = qf.select(user)
+                .from(user)
+                .where(user.email.eq(email))
+                .fetch();
+        User found = foundList.get(0); // TODO
+        out.println(found);
+        return found;
+    }   
 }
