@@ -6,7 +6,7 @@
 package edu.chl.recipebok.core;
 
 import lombok.*;
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,19 +15,19 @@ import java.io.Serializable;
  */
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Entity
+//@Entity
 //@Table(name="recipe") // TODO should become "Recipe" by default, is that ok?
-@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
+//@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
 public class Recipe implements Serializable {
 
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
     @Getter
     private String id;
 
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String name;
     
     @Getter
@@ -36,12 +36,12 @@ public class Recipe implements Serializable {
 
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String creator;
 
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String creationTime;
 
     // TODO add image

@@ -1,7 +1,7 @@
 package edu.chl.recipebok.core;
 
 import lombok.*;
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -9,27 +9,27 @@ import java.io.Serializable;
  * @author August
  */
 
-@EqualsAndHashCode (of = {"userId", "recipeId"})
+//@EqualsAndHashCode (of = {"userId", "recipeId"})
 @NoArgsConstructor
-@Entity
-@IdClass(RatingPK.class)
+//@Entity
+//@IdClass(RatingPK.class)
 public class Rating  implements Serializable {
 
-    @Id
+    //@Id
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String userId;
 
-    @Id
+    //@Id
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String recipeId;
 
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private int value;
 
     @Getter

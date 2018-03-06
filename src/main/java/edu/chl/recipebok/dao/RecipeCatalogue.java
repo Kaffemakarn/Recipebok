@@ -102,8 +102,8 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
                 // Find all recipeIds connected to the specified cookbook       
                 (qf.select(cookbookRecipe.recipeId)
                 .from (cookbookRecipe)
-                .where(cookbookRecipe.cookbookId.eq(cookbookId)))
-            .fetch()));
+                .where(cookbookRecipe.cookbookId.eq(cookbookId))))
+            .fetch());
                   
         out.println(recipes);
         return recipes;
@@ -125,8 +125,8 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
                 // Find all recipeIds connected to the specified Category        
                 (qf.select(recipeCategory.recipeId)
                 .from (recipeCategory)
-                .where(recipeCategory.category.eq(category)))
-            .fetch()));
+                .where(recipeCategory.category.eq(category))))
+            .fetch());
                   
         out.println(recipes);
         return recipes;
@@ -164,8 +164,8 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
                 // Find all recipeIds connected to the specified Ingredient        
                 (qf.select(recipeIngredient.recipeId)
                 .from (recipeIngredient)
-                .where(recipeIngredient.ingredientName.eq(ingredient)))
-            .fetch()));
+                .where(recipeIngredient.ingredientName.eq(ingredient))))
+            .fetch());
                   
         out.println(recipes);
         return recipes;

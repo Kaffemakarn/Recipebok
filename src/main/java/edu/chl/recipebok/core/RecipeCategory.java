@@ -1,7 +1,7 @@
 package edu.chl.recipebok.core;
 
 import lombok.*;
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -9,15 +9,15 @@ import java.io.Serializable;
  * @author August
  */
 @EqualsAndHashCode
-@Entity
-@IdClass(RecipeCategoryPK.class)
+//@Entity
+//@IdClass(RecipeCategoryPK.class)
 public class RecipeCategory implements Serializable {
 
-    @Id
+    //@Id
     @Getter
     private String recipeId;
 
-    @Id
+    //@Id
     @Getter
     // TODO Ensure that this can only be one of the values in the Category enum
     private String category;
