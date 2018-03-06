@@ -8,6 +8,7 @@ import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.dao.CookbookCatalogue;
 import edu.chl.recipebok.dao.RecipeCatalogue;
+import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
@@ -77,15 +78,15 @@ public class CookbookBean implements Serializable {
     }
      
     public void add() {
-        /*tmp.setAddress(DataSupplier.getRandomAddress());
+        //tmp.setAddress(DataSupplier.getRandomAddress());
         try {
-            rcat.create(tmp);
+            cbCat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
-        tmp = new Recipe();*/
+        tmp = new Cookbook();
     }
  
     public void update() {
