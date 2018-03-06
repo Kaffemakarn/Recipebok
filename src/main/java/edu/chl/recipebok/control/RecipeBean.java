@@ -6,7 +6,6 @@
 package edu.chl.recipebok.control;
 
 import edu.chl.recipebok.core.Recipe;
-import edu.chl.recipebok.dao.RecipeCatalogue;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
@@ -31,9 +30,9 @@ import net.bootsfaces.utils.FacesMessages;
 @SessionScoped
 public class RecipeBean implements Serializable {
 
-   private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
-    @EJB
-    private RecipeCatalogue rcat;
+    private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
+    //@EJB
+    //private RecipeCatalogue rcat;
     @Getter
     @Setter
     private Recipe tmp = new Recipe();
@@ -62,11 +61,12 @@ public class RecipeBean implements Serializable {
 
     // --------- Call backend -------------------------
     public void setRecipe() {
-        tmp = rcat.find(tmp.getId());
+        //tmp = rcat.find(tmp.getId());
     }
 
     public List<Recipe> findAll() {
-        return rcat.findAll();
+        //return rcat.findAll();
+        return null;
     }
 
     public void add() {
@@ -82,57 +82,65 @@ public class RecipeBean implements Serializable {
     }
 
     public void update() {
-        rcat.update(tmp);
+        //rcat.update(tmp);
         tmp = new Recipe();
     }
 
     public void delete() {
-        rcat.delete(tmp.getId());
+        //rcat.delete(tmp.getId());
         tmp = new Recipe();
     }
     
     
     // Find recipes by user
     public List<Recipe> findByUser(String user) {
-        return rcat.findByUser(user);
+        //return rcat.findByUser(user);
+        return null;
     }
     
     // Find recipes by recipe name
     public List<Recipe> findByName(String name) {
-        return rcat.findByName(name);
+        //return rcat.findByName(name);
+        return null;
     }
     
       // Find a recipe by user and recipe name
     public Recipe findByUserAndName(String user, String name) {
-        return rcat.findByUserAndName(user, name);
+        //return rcat.findByUserAndName(user, name);
+        return null;
     }
 
     // Find Recipes by Cookbook
     public List<Recipe> findByCookbook(String cookbookId) {
-        return rcat.findByCookbook(cookbookId);
+        //return rcat.findByCookbook(cookbookId);
+        return null;
     }
 
 
     // Find all Recipes that belong to a specified category
     public List<Recipe> findByCategory(String category) {
-        return rcat.findByCategory(category);
+        //return rcat.findByCategory(category);
+        return null;
     }
     
     // Find Recipes that belong to all the specified categories
     public List<Recipe> findByCategories(List<String> categories) {
-        return rcat.findByCategories(categories);
+        //return rcat.findByCategories(categories);
+        return null;
     }
     
     
     // Find Recipes that use the specified ingredient. 
     public List<Recipe> findByIngredient(String ingredient) {
-        return rcat.findByIngredient(ingredient);
+        //return rcat.findByIngredient(ingredient);
+        return null;
     }
     
     
     // Find Recipes that use all the specified ingredients
     public List<Recipe> findByIngredients(List<String> ingredients) {
-        return rcat.findByIngredients(ingredients);
+        //return rcat.findByIngredients(ingredients);
+        return null;
     }
     
 }

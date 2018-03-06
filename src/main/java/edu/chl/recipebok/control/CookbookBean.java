@@ -6,8 +6,6 @@
 package edu.chl.recipebok.control;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
-import edu.chl.recipebok.dao.CookbookCatalogue;
-import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -16,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+//import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -32,9 +30,9 @@ import net.bootsfaces.utils.FacesMessages;
 @SessionScoped
 public class CookbookBean implements Serializable {
     
-     private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
-    @EJB
-    private CookbookCatalogue cbCat;
+    private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
+    //@EJB
+    //private CookbookCatalogue cbCat;
     @Getter
     @Setter
     private Cookbook tmp = new Cookbook();
@@ -70,17 +68,18 @@ public class CookbookBean implements Serializable {
     
       // --------- Call backend -------------------------
     public void setCookbook() {
-       tmp = cbCat.find(tmp.getId());
+       //tmp = cbCat.find(tmp.getId());
     }
 
      public List<Cookbook> findAll() {
-        return cbCat.findAll();
+        //return cbCat.findAll();
+        return null;
     }
      
     public void add() {
         //tmp.setAddress(DataSupplier.getRandomAddress());
         try {
-            cbCat.create(tmp);
+            //cbCat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
@@ -90,23 +89,25 @@ public class CookbookBean implements Serializable {
     }
  
     public void update() {
-        cbCat.update(tmp);
+        //cbCat.update(tmp);
         tmp = new Cookbook();
     }
 
      public void delete() {
-        cbCat.delete(tmp.getId());
+        //cbCat.delete(tmp.getId());
         tmp = new Cookbook();
     }
      
         // Find a cookbook by user and cookbook name
     public Cookbook findByUserAndName(String user, String cookbookname) {
-        return cbCat.findByUserAndName(user, cookbookname);
+        //return cbCat.findByUserAndName(user, cookbookname);
+        return null;
     }
 
     // Find cookbooks by cookbook name
     public List<Cookbook> findByUser(String name) {
-        return cbCat.findByUser(name);
+        //return cbCat.findByUser(name);
+        return null;
     }
     
 }

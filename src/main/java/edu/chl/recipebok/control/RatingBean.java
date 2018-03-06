@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.bootsfaces.utils.FacesMessages;
 import edu.chl.recipebok.core.Rating;
-import edu.chl.recipebok.dao.RatingCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +28,8 @@ import net.bootsfaces.component.form.Form;
 public class RatingBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(RatingBean.class.getName());
-    @EJB
-    private RatingCatalogue rcat;
+    //@EJB
+    //private RatingCatalogue rcat;
     @Getter
     @Setter
     private Rating tmpRating = new Rating();
@@ -65,17 +64,17 @@ public class RatingBean implements Serializable {
 
     // --------- Call backend -------------------------
     public void setRating() {
-        tmpRating = rcat.findByUserAndRecipe(tmpRating.getUserId(), tmpRating.getRecipeId());
+        //tmpRating = rcat.findByUserAndRecipe(tmpRating.getUserId(), tmpRating.getRecipeId());
     }
 
     public List<Rating> findAll() {
-        return rcat.findAll();
-        
+        //return rcat.findAll();
+        return null;
     }
 
     public void add() {
         try {
-            rcat.create(tmpRating);
+            //rcat.create(tmpRating);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
@@ -85,12 +84,12 @@ public class RatingBean implements Serializable {
     }
 
     public void update() {
-        rcat.update(tmpRating);
+        //rcat.update(tmpRating);
         tmpRating = new Rating();
     }
 
     public void delete() {
-        rcat.delete(tmpRating.getUserId(), tmpRating.getRecipeId());
+        //rcat.delete(tmpRating.getUserId(), tmpRating.getRecipeId());
         tmpRating = new Rating();
     }
 

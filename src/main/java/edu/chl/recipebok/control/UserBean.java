@@ -7,7 +7,6 @@ package edu.chl.recipebok.control;
 
 import edu.chl.recipebok.util.ExceptionHandler;
 import edu.chl.recipebok.core.User;
-import edu.chl.recipebok.dao.UserCatalogue;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer;
@@ -29,8 +28,8 @@ import net.bootsfaces.utils.FacesMessages;
 public class UserBean implements Serializable {
     
     private static final Logger LOG = Logger.getLogger(UserBean.class.getName());
-    @EJB
-    private UserCatalogue ucat;
+    //@EJB
+    //private UserCatalogue ucat;
     @Getter
     @Setter
     private User tmp = new User();
@@ -59,16 +58,17 @@ public class UserBean implements Serializable {
 
     // --------- Call backend -------------------------
     public void setUser() {
-        tmp = ucat.find(tmp.getEmail());
+        //tmp = ucat.find(tmp.getEmail());
     }
 
     public List<User> findAll() {
-        return ucat.findAll();
+        //return ucat.findAll();
+        return null;
     }
 
     public void add() {
         try {
-            ucat.create(tmp);
+            //ucat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
@@ -78,21 +78,23 @@ public class UserBean implements Serializable {
     }
 
     public void update() {
-        ucat.update(tmp);
+        //ucat.update(tmp);
         tmp = new User();
     }
 
     public void delete() {
-        ucat.delete(tmp.getEmail());
+        //ucat.delete(tmp.getEmail());
         tmp = new User();
     }
  
     // find user by username
      public User findByUsername(String name) {
-        return ucat.findByUsername(name);
+        //return ucat.findByUsername(name);
+        return null;
     }
     // find user by user email
       public User findByUserMail(String email) {
-        return ucat.findByUserMail(email);
+        //return ucat.findByUserMail(email);
+        return null;
     }
 }
