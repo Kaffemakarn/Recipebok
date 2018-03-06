@@ -9,6 +9,7 @@ import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.dao.IngredientCatalogue;
 import edu.chl.recipebok.dao.RecipeCatalogue;
+import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
@@ -35,7 +36,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class IngredientBean implements Serializable{
  private static final Logger LOG = Logger.getLogger(IngredientBean.class.getName());
     @EJB
-    private IngredientCatalogue ibCat;
+    private IngredientCatalogue ingredientCat;
     @Getter
     @Setter
     private Ingredient tmp = new Ingredient();
@@ -64,25 +65,30 @@ public class IngredientBean implements Serializable{
     
   // --------- Call backend -------------------------
     public void setIngredient() {
-        tmp = (Ingredient) ibCat.findByName(tmp.getName());
+        tmp = (Ingredient) ingredientCat.findByName(tmp.getName());
     }
 
    
      public void add() {
-        /*tmp.setAddress(DataSupplier.getRandomAddress());
+        //tmp.setAddress(DataSupplier.getRandomAddress());
         try {
-            rcat.create(tmp);
+            ingredientCat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
-        tmp = new Recipe();*/
+        tmp = new Ingredient();
     }
 
     public void update() {
-        ibCat.update(tmp);
+        ingredientCat.update(tmp);
         tmp = new Ingredient();
     }
     
+           // Find a ingredient by name
+    public List<Ingredient> findByName(String name) {
+        return ingredientCat.findByName(name);
+        
+    }
 }
