@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/Recipebok"/>
+
+<!--
+
+<Resource name="jdbc/confluence" auth="Container" type="javax.sql.DataSource"
+          username="postgres"
+          password="postgres"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://localhost:5432/postgres"
+          maxTotal="25"
+          maxIdle="10"
+          validationQuery="select 1" /> 
+
+-->
