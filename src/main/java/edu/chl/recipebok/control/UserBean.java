@@ -86,5 +86,13 @@ public class UserBean implements Serializable {
         ucat.delete(tmp.getEmail());
         tmp = new User();
     }
-    
+ 
+    // find user by username
+     public User findByUsername(String name) {
+        return ucat.findByUsername(name);
+    }
+    // find user by user email
+      public User findByUserMail(String email) {
+        return ucat.findByUserMail(email);
+    }
 }
