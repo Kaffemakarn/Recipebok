@@ -98,5 +98,16 @@ public class CookbookBean implements Serializable {
         cbCat.delete(tmp.getId());
         tmp = new Cookbook();
     }
+     
+        // Find a cookbook by user and cookbook name
+    public Cookbook findByUserAndName(String user, String cookbookname) {
+        return cbCat.findByUserAndName(user, cookbookname);
+    }
+
+    // Find cookbooks by cookbook name
+    public List<Cookbook> findByUser(String name) {
+        return cbCat.findByUser(name);
+    }
+    
 }
 
