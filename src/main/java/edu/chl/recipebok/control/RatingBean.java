@@ -10,9 +10,11 @@ import lombok.Getter;
 import lombok.Setter;
 import net.bootsfaces.utils.FacesMessages;
 import edu.chl.recipebok.core.Rating;
+import edu.chl.recipebok.dao.RatingCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.component.dataTable.DataTable;
@@ -22,7 +24,7 @@ import net.bootsfaces.component.form.Form;
  *
  * @author Sabrina
  */
-//@Named("rating")
+//@Named("ratingbean")
 //@RequestScoped
 //@SessionScoped
 public class RatingBean implements Serializable {
@@ -60,7 +62,7 @@ public class RatingBean implements Serializable {
     // ------------ Navigation -------------------
 
     public void cancel() {
-        tmpRating = new Rating();
+        //tmpRating = new Rating();
     }
 
     // --------- Call backend -------------------------
@@ -74,14 +76,16 @@ public class RatingBean implements Serializable {
     }
 
     public void add() {
+        /*
         try {
-            //rcat.create(tmpRating);
+            rcat.create(tmpRating);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
         tmpRating = new Rating();
+*/
     }
 
     public void update() {

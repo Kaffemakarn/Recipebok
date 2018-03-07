@@ -6,7 +6,7 @@
 package edu.chl.recipebok.core;
 
 import java.io.Serializable;
-//import javax.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 /**
@@ -15,17 +15,18 @@ import lombok.*;
  */
 @NoArgsConstructor
 @EqualsAndHashCode
-//@Entity
+@Entity
+@Table(name="user" )
 //TODO "User is a reserved SQL99 keyword"? 
 public class User implements Serializable {
 
     @Getter
-    //@Id
+    @Id
     private String email;
     
     @Getter
     @Setter
-    //@Column(unique=true)
+    @Column(unique=true)
     private String username;
     
     @Getter

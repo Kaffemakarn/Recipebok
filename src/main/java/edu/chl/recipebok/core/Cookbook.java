@@ -1,29 +1,29 @@
 package edu.chl.recipebok.core;
 
 import lombok.*;
-//import javax.persistence.*;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @NoArgsConstructor
 @EqualsAndHashCode
-//@Entity
-//@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
+@Entity
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
 public class Cookbook implements Serializable {
 
-    //@Id
-    //@GeneratedValue
+    @Id
+    @GeneratedValue
     @Getter
-    //@Setter
+    @Setter
     private String id;
 
     @Getter
     @Setter
-    //@Column(nullable=false)
+    @Column(nullable=false)
     private String userId;
 
     @Getter
     @Setter
-    //@Column(nullable=false)
+    @Column(nullable=false)
     private String name;
 
 

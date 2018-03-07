@@ -1,7 +1,7 @@
 package edu.chl.recipebok.core;
 
 import lombok.*;
-//import javax.persistence.*;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -9,15 +9,16 @@ import java.io.Serializable;
  * @author August
  */
 @EqualsAndHashCode
-//@Entity
-//@IdClass(RecipeIngredientPK.class)
+@NoArgsConstructor
+@Entity
+@IdClass(RecipeIngredientPK.class)
 public class RecipeIngredient implements Serializable {
 
-    //@Id
+    @Id
     @Getter
     private String recipeId;
 
-    //@Id
+    @Id
     @Getter
     private String ingredientName;
 

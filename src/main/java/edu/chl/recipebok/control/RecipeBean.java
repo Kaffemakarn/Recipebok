@@ -6,6 +6,8 @@
 package edu.chl.recipebok.control;
 
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.dao.RecipeCatalogue;
+import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -25,8 +28,8 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author Mickaela
  */
-//@Named("recipebean")
-//@RequestScoped
+@Named("recipebean")
+@RequestScoped
 //@SessionScoped
 public class RecipeBean implements Serializable {
 
@@ -49,9 +52,9 @@ public class RecipeBean implements Serializable {
     }
 
     public void page() {
-       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
        
-       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
     // ------------ Navigation -------------------
 
@@ -70,7 +73,8 @@ public class RecipeBean implements Serializable {
     }
 
     public void add() {
-        /*tmp.setAddress(DataSupplier.getRandomAddress());
+        //tmp.setAddress(DataSupplier.getRandomAddress());
+        /*
         try {
             rcat.create(tmp);
             FacesMessages.info("Success");
@@ -78,7 +82,8 @@ public class RecipeBean implements Serializable {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
-        tmp = new Recipe();*/
+        tmp = new Recipe();
+*/
     }
 
     public void update() {

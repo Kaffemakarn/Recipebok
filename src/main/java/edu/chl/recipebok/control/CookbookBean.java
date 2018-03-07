@@ -6,6 +6,7 @@
 package edu.chl.recipebok.control;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.dao.CookbookCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -14,7 +15,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-//import javax.ejb.EJB;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -25,14 +27,14 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author rahadadgar
  */
-//@Named("cookbookbean")
-//@RequestScoped
+@Named("cookbookbean")
+@RequestScoped
 //@SessionScoped
 public class CookbookBean implements Serializable {
     
     private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
-    //@EJB
-    //private CookbookCatalogue cbCat;
+    @EJB
+    private CookbookCatalogue cbCat;
     @Getter
     @Setter
     private Cookbook tmp = new Cookbook();
@@ -54,9 +56,9 @@ public class CookbookBean implements Serializable {
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
        
-       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }   
   
   
@@ -68,12 +70,11 @@ public class CookbookBean implements Serializable {
     
       // --------- Call backend -------------------------
     public void setCookbook() {
-       //tmp = cbCat.find(tmp.getId());
+       tmp = cbCat.find(tmp.getId());
     }
 
      public List<Cookbook> findAll() {
-        //return cbCat.findAll();
-        return null;
+        return cbCat.findAll();
     }
      
     public void add() {
@@ -89,25 +90,23 @@ public class CookbookBean implements Serializable {
     }
  
     public void update() {
-        //cbCat.update(tmp);
+        cbCat.update(tmp);
         tmp = new Cookbook();
     }
 
      public void delete() {
-        //cbCat.delete(tmp.getId());
+        cbCat.delete(tmp.getId());
         tmp = new Cookbook();
     }
      
         // Find a cookbook by user and cookbook name
     public Cookbook findByUserAndName(String user, String cookbookname) {
-        //return cbCat.findByUserAndName(user, cookbookname);
-        return null;
+        return cbCat.findByUserAndName(user, cookbookname);
     }
 
     // Find cookbooks by cookbook name
     public List<Cookbook> findByUser(String name) {
-        //return cbCat.findByUser(name);
-        return null;
+        return cbCat.findByUser(name);
     }
     
 }
