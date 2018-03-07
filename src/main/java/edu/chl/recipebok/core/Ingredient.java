@@ -22,6 +22,7 @@ public class Ingredient implements Serializable {
 
     @Id
     @Getter
+    @Setter
     @Column(nullable=false)
     private String name;
 

@@ -41,7 +41,7 @@ public class IngredientBean implements Serializable{
     private IngredientCatalogue ingredientCat;
     @Getter
     @Setter
-    private Ingredient tmp = new Ingredient();
+    private Ingredient tmp = new Ingredient("dfdfdf");
     private final int start = 0;
     private int nRecords = 50;
 
@@ -54,9 +54,9 @@ public class IngredientBean implements Serializable{
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
        
-       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
       
        // ------------ Navigation -------------------
@@ -72,6 +72,7 @@ public class IngredientBean implements Serializable{
 
    
      public void add() {
+         
         try {
             ingredientCat.create(tmp);
             FacesMessages.info("Success");
@@ -80,16 +81,20 @@ public class IngredientBean implements Serializable{
             FacesMessages.info("Fail " + message);
         }
         tmp = new Ingredient();
+
     }
 
     public void update() {
+        
         ingredientCat.update(tmp);
         tmp = new Ingredient();
+
     }
     
            // Find a ingredient by name
     public List<Ingredient> findByName(String name) {
-        return ingredientCat.findByName(name);
         
+        return ingredientCat.findByName(name);
+
     }
 }
