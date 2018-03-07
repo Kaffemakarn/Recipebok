@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    
-  <Resource id="recipebok" type="javax.sql.DataSource">#Sat Mar 03 10:24:25 CET 2018
-      
-jdbcDriver=org.postgresql.Driver
-password=
-userName=postgres
-jdbcUrl=jdbc\:postgresql\://localhost\:5432/postgres
-</Resource>
+  
+    <Resource id="postgres" type="javax.sql.DataSource">#Wed Mar 07 10:40:51 CET 2018
+        jdbcDriver=org.postgresql.Driver
+        password=postgres
+        userName=postgres
+        jdbcUrl=jdbc\:postgresql\://localhost\:5432/postgres
+    </Resource>
 </resources>

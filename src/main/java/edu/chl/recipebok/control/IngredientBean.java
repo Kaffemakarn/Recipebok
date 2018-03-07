@@ -7,6 +7,7 @@ package edu.chl.recipebok.control;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.dao.IngredientCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -27,14 +29,16 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author rahadadgar
  */
-//@Named("ingredientbean")
-//@RequestScoped
+@Named("ingredientbean")
+@RequestScoped
 //@SessionScoped
 
 public class IngredientBean implements Serializable{
- private static final Logger LOG = Logger.getLogger(IngredientBean.class.getName());
-   // @EJB
-    //private IngredientCatalogue ingredientCat;
+
+    private static final Logger LOG = Logger.getLogger(IngredientBean.class.getName());
+    
+    @EJB
+    private IngredientCatalogue ingredientCat;
     @Getter
     @Setter
     private Ingredient tmp = new Ingredient();
@@ -63,14 +67,13 @@ public class IngredientBean implements Serializable{
     
   // --------- Call backend -------------------------
     public void setIngredient() {
-        //tmp = (Ingredient) ingredientCat.findByName(tmp.getName());
+        tmp = (Ingredient) ingredientCat.findByName(tmp.getName());
     }
 
    
      public void add() {
-        //tmp.setAddress(DataSupplier.getRandomAddress());
         try {
-            //ingredientCat.create(tmp);
+            ingredientCat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
@@ -80,14 +83,13 @@ public class IngredientBean implements Serializable{
     }
 
     public void update() {
-        //ingredientCat.update(tmp);
+        ingredientCat.update(tmp);
         tmp = new Ingredient();
     }
     
            // Find a ingredient by name
     public List<Ingredient> findByName(String name) {
-        //return ingredientCat.findByName(name);
-        return null;
+        return ingredientCat.findByName(name);
         
     }
 }
