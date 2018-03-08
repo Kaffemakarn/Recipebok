@@ -17,13 +17,13 @@ import java.io.Serializable;
 @EqualsAndHashCode(of = {"id"})
 @Entity
 //@Table(name="recipe" ) // TODO should become "Recipe" by default, is that ok?
-@Table(name="recipe", uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
+@Table(name="recipe", uniqueConstraints= { @UniqueConstraint(columnNames = {"id", "name"})})
 public class Recipe implements Serializable {
 
-    @Id
-    @GeneratedValue
     @Getter
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Getter
     @Setter
@@ -36,8 +36,9 @@ public class Recipe implements Serializable {
 
     @Getter
     @Setter
+    @ManyToOne
     //@Column(nullable=false)
-    private String creator;
+    private UserPerson creator;
 
     @Getter
     @Setter
@@ -46,7 +47,7 @@ public class Recipe implements Serializable {
 
     // TODO add image
 
-    public Recipe(String id, String name, String instructions, String creator, String creationTime){
+    public Recipe(Long id, String name, String instructions, UserPerson creator, String creationTime){
         this.id = id;
         this.name = name;
         this.instructions = instructions;
