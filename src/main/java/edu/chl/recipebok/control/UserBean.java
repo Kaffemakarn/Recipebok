@@ -8,6 +8,7 @@ package edu.chl.recipebok.control;
 import edu.chl.recipebok.util.ExceptionHandler;
 import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.UserCatalogue;
+import edu.chl.recipebok.service.DataSupplier;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer;
@@ -51,7 +52,7 @@ public class UserBean implements Serializable {
     }
 
     public void page() {
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("userForm:userTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("userTable");
        
        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }

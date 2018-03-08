@@ -22,7 +22,7 @@ public class DataSupplier {
     
     
     
-    public static List<UserPerson> getUsers(){
+    public static List<UserPerson> getUserPersons(){
         
         List<UserPerson> l = new ArrayList<>();
         
