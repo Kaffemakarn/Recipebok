@@ -4,6 +4,7 @@ import edu.chl.recipebok.core.Category;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.CookbookRecipe;
 import edu.chl.recipebok.core.Ingredient;
+import edu.chl.recipebok.core.Rating;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeCategory;
 import edu.chl.recipebok.core.RecipeIngredient;
@@ -38,6 +39,14 @@ public class DataSupplier {
     
     static Cookbook cookbook = new Cookbook(new Long(0001), s, "Beautiful Food");
     
+    //user recipe value comment
+    static Rating rating1 = new Rating(s, tomatosoup, 4, "Great");
+    static Rating rating2 = new Rating(t, tomatosoup, 1, "Not good");
+    static Rating rating3 = new Rating(t, chicken, 5, "Amazing");
+    
+    
+    
+    
     public static List<UserPerson> getUserPersons(){
         
         List<UserPerson> l = new ArrayList<>();
@@ -57,6 +66,16 @@ public class DataSupplier {
         
         return recipes;
         
+    }
+    
+    public static List<Rating> getRatings(){
+        List<Rating> ratings = new ArrayList<>();
+        
+        ratings.add(rating1);
+        ratings.add(rating2);
+        ratings.add(rating3);
+
+        return ratings;
     }
     
     //this creates the ingredient connections for the above recipes

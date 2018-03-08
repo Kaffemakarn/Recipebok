@@ -20,11 +20,13 @@ public class CookbookRecipe implements Serializable {
     private Long id;
     
     @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "cookbook_id")
     private Cookbook cookbook;
 
     @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
