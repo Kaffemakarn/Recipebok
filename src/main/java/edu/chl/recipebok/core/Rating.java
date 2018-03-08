@@ -12,24 +12,28 @@ import java.io.Serializable;
 @EqualsAndHashCode (of = {"userId", "recipeId"})
 @NoArgsConstructor
 @Entity
-@IdClass(RatingPK.class)
+//@IdClass(RatingPK.class)
 public class Rating  implements Serializable {
 
+    @Getter
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+       
     @Getter
     @Setter
-    //@Column(nullable=false)
-    private String userId;
-
-    @Id
-    @Getter
-    @Setter
-    //@Column(nullable=false)
-    private String recipeId;
+    @ManyToOne
+    @JoinColumn(name = "userperson_email")
+    private UserPerson user;
 
     @Getter
     @Setter
-    //@Column(nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+    @Getter
+    @Setter
     private int value;
 
     @Getter
@@ -37,9 +41,9 @@ public class Rating  implements Serializable {
     private String comment;
 
 
-    public Rating(String userId, String recipeId, int value, String comment) {
-        this.userId = userId;
-        this.recipeId = recipeId;
+    public Rating(UserPerson user, Recipe recipe, int value, String comment) {
+        this.user = user;
+        this.recipe = recipe;
         this.value = value;
         this.comment = comment;
     }
@@ -48,8 +52,8 @@ public class Rating  implements Serializable {
     @Override
     public String toString() {
         return "Rating{" +
-                "userId='" + userId + '\'' +
-                ", recipeId='" + recipeId + '\'' +
+                "userId='" + user.getEmail() + '\'' +
+                ", recipeId='" + recipe.getId() + '\'' +
                 ", value=" + value +
                 ", comment='" + comment + '\'' +
                 '}';

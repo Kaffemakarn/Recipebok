@@ -11,32 +11,40 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@IdClass(RecipeIngredientPK.class)
+//@IdClass(RecipeIngredientPK.class)
 public class RecipeIngredient implements Serializable {
-
-    @Id
+    
+    
     @Getter
-    private String recipeId;
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
+    //@Id
     @Getter
-    private String ingredientName;
+    @ManyToOne
+    private Recipe recipe;
+
+    //@Id
+    @Getter
+    @ManyToOne
+    private Ingredient ingredient;
 
     @Getter
     @Setter
     private int quantity;
 
-    public RecipeIngredient(String recipeId, String ingredientName, int quantity) {
-        this.recipeId = recipeId;
-        this.ingredientName = ingredientName;
+    public RecipeIngredient(Recipe recipe, Ingredient ingredient, int quantity) {
+        this.recipe = recipe;
+        this.ingredient = ingredient;
         this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "RecipeIngredient{" +
-                "recipeId='" + recipeId + '\'' +
-                ", ingredientName='" + ingredientName + '\'' +
+                "recipe='" + recipe + '\'' +
+                ", ingredient='" + ingredient + '\'' +
                 ", quantity=" + quantity +
                 '}';
     }
