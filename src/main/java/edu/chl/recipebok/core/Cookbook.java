@@ -7,30 +7,30 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"userId", "cookbookName"})})
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"user", "name"})})
 public class Cookbook implements Serializable {
 
+    @Getter
     @Id
-    @GeneratedValue
-    @Getter
-    @Setter
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Getter
     @Setter
-    @Column(nullable=false)
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "userperson_email")
+    private UserPerson user;
 
     @Getter
     @Setter
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private String name;
 
 
-    public Cookbook(String id, String userId, String name)
+    public Cookbook(Long id, UserPerson user, String name)
     {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.name = name;
     }
 
@@ -38,7 +38,7 @@ public class Cookbook implements Serializable {
     @Override
     public String toString(){
         return "Cookbook{" + /* "id = " + id +
-                ", */"userId = " + userId +
+                ", */"creator = " + user.getUsername() +
                 ", Cookbook Name = " + name + "}";
     }
 

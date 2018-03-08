@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import edu.chl.recipebok.core.QCookbook;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import edu.chl.recipebok.core.UserPerson;
 
 /**
  *
@@ -41,23 +42,23 @@ public class CookbookCatalogue extends AbstractQuery<Cookbook, String> {
         this.em = em;
     }
 
-    public List<Cookbook> findByUser(String user) {
+    public List<Cookbook> findByUser(UserPerson user) {
         QCookbook cookbook = QCookbook.cookbook;
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Cookbook> found = qf.select(cookbook)
                 .from(cookbook)
-                .where(cookbook.userId.eq(user))
+                .where(cookbook.user.eq(user))
                 .fetch();
         out.println(found);
         return found;
     }
     
-    public Cookbook findByUserAndName(String user, String cookbookName) {
+    public Cookbook findByUserAndName(UserPerson user, String cookbookName) {
         QCookbook cookbook = QCookbook.cookbook;
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Cookbook> foundList = qf.select(cookbook)
                 .from(cookbook)
-                .where(cookbook.userId.eq(user).and(cookbook.name.eq(cookbookName)))
+                .where(cookbook.user.eq(user).and(cookbook.name.eq(cookbookName)))
                 .fetch();
         Cookbook found = foundList.get(0);
         out.println(found);
