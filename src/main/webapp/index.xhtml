@@ -29,11 +29,11 @@
         
 
         <b:container style="background-color: #EEEEEE; height:200px;">
-            <b:row>
-                <b:dataTable id="recipeTable" var="r" value="#{recipebean.findAll()}">
+            <!--<b:row>
+                <b:dataTable id="testTable" var="r" value="#{userbean.findAll()}">
                     <b:column col-sm="6" col-md="4">
                         <b:thumbnail span="8">
-                        <b:image name="#{r.name}" value="#{r.img}" style="height:150px; width: 100%;"/>
+                        b:image name="#{r.name}" value="#{r.img}" style="height:150px; width: 100%;"/>
                         <f:facet name="caption">
                             <h3 value="#{r.name}" style="margin-top: 0;text-align: center;"/>
                           <p>
@@ -43,7 +43,25 @@
                       </b:thumbnail>
                     </b:column>
                 </b:dataTable>
-              </b:row>
+              </b:row>-->
+            <b:row>
+            <b:form id="userForm">
+                <b:dataTable  
+                    id="userTable"  
+                    widgetVar="me"
+                    var="a" value="#{userbean.findAll()}" span="12" 
+                    striped="true"
+                    page-length-menu="5,10,20"
+                    page-length="5"
+                    onpage="console.log(me); ajax:userbean.page()"
+                    >             
+                    <b:dataTableColumn value="#{a.email}" order="asc"  />
+                    <b:dataTableColumn value="#{a.username}" />
+                    <b:dataTableColumn value="#{a.picture}" />
+              
+                </b:dataTable>
+            </b:form>
+        </b:row>
         </b:container>
         
     </ui:define>

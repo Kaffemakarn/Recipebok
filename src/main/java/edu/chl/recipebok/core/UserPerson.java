@@ -16,9 +16,9 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name="user" )
+@Table(name="userperson" )
 //TODO "User is a reserved SQL99 keyword"? 
-public class User implements Serializable {
+public class UserPerson implements Serializable {
 
     @Getter
     @Id
@@ -33,7 +33,7 @@ public class User implements Serializable {
     @Setter
     private String picture; //TODO Find out how to handle images.
     
-    public User(String email, String username, String picture){
+    public UserPerson(String email, String username, String picture){
         this.email = email;
         this.username = username;
         this.picture = picture;

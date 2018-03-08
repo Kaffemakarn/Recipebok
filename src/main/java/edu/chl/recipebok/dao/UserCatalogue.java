@@ -1,12 +1,12 @@
 package edu.chl.recipebok.dao;
 
-import edu.chl.recipebok.core.User;
+import edu.chl.recipebok.core.UserPerson;
 import static java.lang.System.out;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import edu.chl.recipebok.core.QUser;
+import edu.chl.recipebok.core.QUserPerson;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.QRecipe;
 import edu.chl.recipebok.core.Recipe;
@@ -17,7 +17,7 @@ import static java.lang.System.out;
  * @author August
  */
 @Stateless
-public class UserCatalogue extends AbstractQuery<User, String> {
+public class UserCatalogue extends AbstractQuery<UserPerson, String> {
 
     @PersistenceContext(unitName = "recipebok_pu")
     private EntityManager em;
@@ -25,7 +25,7 @@ public class UserCatalogue extends AbstractQuery<User, String> {
 
     public UserCatalogue() {
         // user is default object created by QueryDSL, see Generated Sources
-        super(User.class, QUser.user);
+        super(UserPerson.class, QUserPerson.userPerson);
     }
 
     @Override
@@ -37,27 +37,27 @@ public class UserCatalogue extends AbstractQuery<User, String> {
         this.em = em;
     }
 
-    public User findByUsername(String username) {
-        QUser user = QUser.user;
+    public UserPerson findByUsername(String username) {
+        QUserPerson user = QUserPerson.userPerson;
         JPAQueryFactory qf = new JPAQueryFactory(em);
-        List<User> foundList = qf.select(user)
+        List<UserPerson> foundList = qf.select(user)
                 .from(user)
                 .where(user.username.eq(username))
                 .fetch();
-        User found = foundList.get(0); // TODO
+        UserPerson found = foundList.get(0); // TODO
         out.println(found);
         return found;
     }   
     
     
-      public User findByUserMail(String email) {
-        QUser user = QUser.user;
+      public UserPerson findByUserMail(String email) {
+        QUserPerson user = QUserPerson.userPerson;
         JPAQueryFactory qf = new JPAQueryFactory(em);
-        List<User> foundList = qf.select(user)
+        List<UserPerson> foundList = qf.select(user)
                 .from(user)
                 .where(user.email.eq(email))
                 .fetch();
-        User found = foundList.get(0); // TODO
+        UserPerson found = foundList.get(0); // TODO
         out.println(found);
         return found;
     }   

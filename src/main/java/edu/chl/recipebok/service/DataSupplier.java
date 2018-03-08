@@ -7,7 +7,7 @@ import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeCategory;
 import edu.chl.recipebok.core.RecipeIngredient;
-import edu.chl.recipebok.core.User;
+import edu.chl.recipebok.core.UserPerson;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +22,13 @@ public class DataSupplier {
     
     
     
-    public static List<User> getUsers(){
+    public static List<UserPerson> getUsers(){
         
-        List<User> l = new ArrayList<>();
+        List<UserPerson> l = new ArrayList<>();
         
         //(String email, String username, String picture)
-        l.add(new User("Sabrina@mail", "Sabrina", "Strong picture"));
-        l.add(new User("Trafalgar@mail", "Trafalgar", "Pretty picture"));
+        l.add(new UserPerson("Sabrina@mail", "Sabrina", "Strong picture"));
+        l.add(new UserPerson("Trafalgar@mail", "Trafalgar", "Pretty picture"));
         return l;
     }
     

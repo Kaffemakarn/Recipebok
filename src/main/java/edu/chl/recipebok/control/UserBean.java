@@ -6,7 +6,7 @@
 package edu.chl.recipebok.control;
 
 import edu.chl.recipebok.util.ExceptionHandler;
-import edu.chl.recipebok.core.User;
+import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.UserCatalogue;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -16,7 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import net.bootsfaces.component.dataTable.DataTable;
@@ -26,6 +28,8 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author rahadadgar
  */
+@Named("userbean")
+@SessionScoped
 public class UserBean implements Serializable {
     
     private static final Logger LOG = Logger.getLogger(UserBean.class.getName());
@@ -33,7 +37,7 @@ public class UserBean implements Serializable {
     private UserCatalogue ucat;
     @Getter
     @Setter
-    private User tmp = new User();
+    private UserPerson tmp = new UserPerson();
     private final int start = 0;
     private int nRecords = 50;
 
@@ -47,14 +51,14 @@ public class UserBean implements Serializable {
     }
 
     public void page() {
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("userTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("userForm:userTable");
        
        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
     // ------------ Navigation -------------------
 
     public void cancel() {
-        tmp = new User();
+        tmp = new UserPerson();
     }
 
     // --------- Call backend -------------------------
@@ -62,7 +66,7 @@ public class UserBean implements Serializable {
         tmp = ucat.find(tmp.getEmail());
     }
 
-    public List<User> findAll() {
+    public List<UserPerson> findAll() {
         return ucat.findAll();
     }
 
@@ -74,25 +78,25 @@ public class UserBean implements Serializable {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
-        tmp = new User();
+        tmp = new UserPerson();
     }
 
     public void update() {
         ucat.update(tmp);
-        tmp = new User();
+        tmp = new UserPerson();
     }
 
     public void delete() {
         ucat.delete(tmp.getEmail());
-        tmp = new User();
+        tmp = new UserPerson();
     }
  
     // find user by username
-     public User findByUsername(String name) {
+     public UserPerson findByUsername(String name) {
         return ucat.findByUsername(name);
     }
     // find user by user email
-      public User findByUserMail(String email) {
+      public UserPerson findByUserMail(String email) {
         return ucat.findByUserMail(email);
     }
 }
