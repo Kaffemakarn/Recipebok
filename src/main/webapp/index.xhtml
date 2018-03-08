@@ -40,7 +40,7 @@
 
                     <b:dataTableColumn label="Title" style="width:600px;" id="ingredientTable">
                         <h3>#{r.name}</h3>
-                        <p>Ingredients: #{ingredientbean.findByRecipeId(r.id)}</p>
+                        <p>Ingredients: #{ingredientbean.findByRecipe(r.id)}</p>
                         <!--<p>#{recipeingredientbean.findByRecipeId(r.id)[1].quantity} #{recipeingredientbean.findByRecipeId(r.id)[0].ingredientName}</p>-->
                     </b:dataTableColumn>
                     

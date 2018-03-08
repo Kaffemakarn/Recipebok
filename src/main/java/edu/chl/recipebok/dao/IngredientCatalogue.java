@@ -10,6 +10,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.QIngredient;
 import edu.chl.recipebok.core.QRecipeIngredient;
+import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeIngredient;
 import java.util.ArrayList;
 
@@ -50,32 +51,18 @@ public class IngredientCatalogue extends AbstractQuery<Ingredient, String> {
         return found;
     }
     
-    public List<Ingredient> findByRecipeId(String recipeId) {
+    public List<Ingredient> findByRecipe(Recipe recipe) {
         QRecipeIngredient recipeIngredient = QRecipeIngredient.recipeIngredient;
         QIngredient ingredient = QIngredient.ingredient;
         JPAQueryFactory qf = new JPAQueryFactory(em);
-        /*
-        List<RecipeIngredient> tmp = qf.select(recipeIngredient)
-                .from(recipeIngredient)
-                .where(recipeIngredient.recipeId.eq(recipeId))
-                .fetch();
-        
-        List<Ingredient> found = new ArrayList();
-        for(int i = 0; i < tmp.size(); i++) {
-            found = qf.select(ingredient)
-                    .from(ingredient)
-                    .where(ingredient.name.eq(tmp.get(i).getIngredientName()))
-                    .fetch();
-            
-        }*/
         
         List<Ingredient> ingredients = 
                 (qf.select(ingredient)
                 .from(ingredient)
-                .where(ingredient.name.in
-                    (qf.select(recipeIngredient.ingredientName)
+                .where(ingredient.in
+                    (qf.select(recipeIngredient.ingredient)
                     .from(recipeIngredient)
-                    .where(recipeIngredient.recipeId.eq(recipeId))))
+                    .where(recipeIngredient.recipe.eq(recipe))))
                 .fetch());
   
         out.println(ingredients);

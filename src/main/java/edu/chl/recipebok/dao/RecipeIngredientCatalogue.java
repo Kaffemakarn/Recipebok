@@ -9,6 +9,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.QIngredient;
 import edu.chl.recipebok.core.QRecipeIngredient;
+import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeIngredient;
 import static java.lang.System.out;
 import java.util.List;
@@ -41,24 +42,13 @@ public class RecipeIngredientCatalogue extends AbstractQuery<RecipeIngredient, S
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }
-
-    public List<RecipeIngredient> findByName(String name) {
-        QRecipeIngredient recipeIngredient = QRecipeIngredient.recipeIngredient;
-        JPAQueryFactory qf = new JPAQueryFactory(em);
-        List<RecipeIngredient> found = qf.select(recipeIngredient)
-                .from(recipeIngredient)
-                .where(recipeIngredient.ingredientName.eq(name))
-                .fetch();
-        out.println(found);
-        return found;
-    }
     
-    public List<RecipeIngredient> findByRecipeId(String recipeId) {
+    public List<RecipeIngredient> findByRecipe(Recipe recipe) {
         QRecipeIngredient recipeIngredient = QRecipeIngredient.recipeIngredient;
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<RecipeIngredient> found = qf.select(recipeIngredient)
                 .from(recipeIngredient)
-                .where(recipeIngredient.recipeId.eq(recipeId))
+                .where(recipeIngredient.recipe.eq(recipe))
                 .fetch();
         out.println(found);
         return found;

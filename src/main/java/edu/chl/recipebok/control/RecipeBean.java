@@ -5,7 +5,11 @@
  */
 package edu.chl.recipebok.control;
 
+import edu.chl.recipebok.core.Category;
+import edu.chl.recipebok.core.Cookbook;
+import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
@@ -97,7 +101,7 @@ public class RecipeBean implements Serializable {
     
     
     // Find recipes by user
-    public List<Recipe> findByUser(String user) {
+    public List<Recipe> findByUser(UserPerson user) {
         return rcat.findByUser(user);
     }
     
@@ -107,35 +111,36 @@ public class RecipeBean implements Serializable {
     }
     
       // Find a recipe by user and recipe name
-    public Recipe findByUserAndName(String user, String name) {
+    public Recipe findByUserAndName(UserPerson user, String name) {
         return rcat.findByUserAndName(user, name);
     }
 
     // Find Recipes by Cookbook
-    public List<Recipe> findByCookbook(String cookbookId) {
+    public List<Recipe> findByCookbook(Cookbook cookbookId) {
         return rcat.findByCookbook(cookbookId);
     }
 
-
+/*
     // Find all Recipes that belong to a specified category
-    public List<Recipe> findByCategory(String category) {
+    public List<Recipe> findByCategory(Category category) {
         return rcat.findByCategory(category);
     }
     
+    
     // Find Recipes that belong to all the specified categories
-    public List<Recipe> findByCategories(List<String> categories) {
+    public List<Recipe> findByCategories(List<Category> categories) {
         return rcat.findByCategories(categories);
     }
-    
+    */
     
     // Find Recipes that use the specified ingredient. 
-    public List<Recipe> findByIngredient(String ingredient) {
+    public List<Recipe> findByIngredient(Ingredient ingredient) {
         return rcat.findByIngredient(ingredient);
     }
     
     
     // Find Recipes that use all the specified ingredients
-    public List<Recipe> findByIngredients(List<String> ingredients) {
+    public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
         return rcat.findByIngredients(ingredients);
     }
     

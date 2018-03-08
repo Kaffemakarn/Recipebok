@@ -101,7 +101,7 @@ public class IngredientBean implements Serializable{
 
     }
     
-    public List<Ingredient> findByRecipeId(String recipeId) {
-        return icat.findByRecipeId(recipeId);
+    public List<Ingredient> findByRecipe(Recipe recipe) {
+        return icat.findByRecipe(recipe);
     }
 }
