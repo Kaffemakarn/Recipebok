@@ -21,34 +21,39 @@ public class DataSupplier {
     //Note that these methods must all be used in order to properly populate the database
     
     
+    static UserPerson s = new UserPerson("Sabrina@mail", "Sabrina", "Strong picture");
+    static UserPerson t = new UserPerson("Trafalgar@mail", "Trafalgar", "Pretty picture");
+        
+    static String inst1 = "First, take the tomatoes and chop them coarsely. \n"
+                + "Then, put them in a pot together with the water and all spices.\n"
+                + "Let it boil for 20 minutes and then serve with bread.";
+        
+    static Recipe tomatosoup = new Recipe("TOMATSOPPA", "Tomatsoppa", inst1, "Sabrina@mail", "2018-03-02");
+
+    static String inst2 = "Defrost the chicken. \n"
+            + "Mix the soy sauce with the spices and let the chicken marinate in the sauce. \n"
+            + "Then put the chicken in the oven and cook for 30 minutes.";
+
+    static Recipe chicken = new Recipe("CHICKEN", "Marinated Chicken", inst2, "Trafalgar@mail", "1066-06-06");
+    
+    static Cookbook cookbook = new Cookbook(new Long(0001), s, "Beautiful Food");
     
     public static List<UserPerson> getUserPersons(){
         
         List<UserPerson> l = new ArrayList<>();
         
-        //(String email, String username, String picture)
-        l.add(new UserPerson("Sabrina@mail", "Sabrina", "Strong picture"));
-        l.add(new UserPerson("Trafalgar@mail", "Trafalgar", "Pretty picture"));
+        l.add(s);
+        l.add(t);
         return l;
     }
     
-    //provides recipes created by the above users
+    
     public static List<Recipe> getRecipes(){
         
         List<Recipe> recipes = new ArrayList<Recipe>();
-        
-        String instructions = "First, take the tomatoes and chop them coarsely. \n"
-                + "Then, put them in a pot together with the water and all spices.\n"
-                + "Let it boil for 20 minutes and then serve with bread.";
-        
-        //String id, String name, String creator, String creationTime)
-        recipes.add(new Recipe("TOMATSOPPA", "Tomatsoppa", instructions, "Sabrina@mail", "2018-03-02"));
-        
-        instructions = "Defrost the chicken. \n"
-                + "Mix the soy sauce with the spices and let the chicken marinate in the sauce. \n"
-                + "Then put the chicken in the oven and cook for 30 minutes.";
-        
-        recipes.add(new Recipe("CHICKEN", "Marinated Chicken", instructions, "Trafalgar@mail", "1066-06-06"));
+      
+        recipes.add(tomatosoup);
+        recipes.add(chicken);
         
         return recipes;
         
@@ -91,10 +96,8 @@ public class DataSupplier {
     
     public static List<Cookbook> getCookbooks(){
         
-        List<Cookbook> l = new ArrayList<>();
-        
-        
-        l.add(new Cookbook("IDONE", "Sabrina@mail", "Beautiful Food"));
+        List<Cookbook> l = new ArrayList<>();        
+        l.add(cookbook);
         
         return l;
     }
@@ -102,8 +105,8 @@ public class DataSupplier {
     public static List<CookbookRecipe> getCookbookRecipes(){
         List<CookbookRecipe> l = new ArrayList<>();
         
-        l.add(new CookbookRecipe("IDONE", "TOMATSOPPA"));
-        l.add(new CookbookRecipe("IDONE", "CHICKEN"));
+        l.add(new CookbookRecipe(cookbook, tomatosoup));
+        l.add(new CookbookRecipe(cookbook, chicken));
         
         return l;
     }
