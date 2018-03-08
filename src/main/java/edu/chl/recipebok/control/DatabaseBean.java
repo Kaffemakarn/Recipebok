@@ -5,7 +5,13 @@
  */
 package edu.chl.recipebok.control;
 
+import edu.chl.recipebok.core.Ingredient;
+import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.RecipeIngredient;
 import edu.chl.recipebok.core.UserPerson;
+import edu.chl.recipebok.dao.IngredientCatalogue;
+import edu.chl.recipebok.dao.RecipeCatalogue;
+import edu.chl.recipebok.dao.RecipeIngredientCatalogue;
 import edu.chl.recipebok.dao.UserCatalogue;
 import edu.chl.recipebok.service.DataSupplier;
 import static java.lang.System.out;
@@ -27,6 +33,15 @@ public class DatabaseBean {
 
     @EJB
     private UserCatalogue ucat;
+    
+    @EJB
+    private RecipeCatalogue rcat;
+    
+    @EJB
+    private IngredientCatalogue icat;
+    
+    @EJB
+    private RecipeIngredientCatalogue ricat;
 
     @PostConstruct
     void post() {
@@ -39,11 +54,23 @@ public class DatabaseBean {
         for (UserPerson u : DataSupplier.getUserPersons()) {
             ucat.create(u);
         }
+        for(Recipe r : DataSupplier.getRecipes()) {
+            rcat.create(r);
+        }
+        for(Ingredient i : DataSupplier.getIngredients()) {
+            icat.create(i);
+        }
+        for(RecipeIngredient ri : DataSupplier.getRecipeIngredients()) {
+            ricat.create(ri);
+        }
     }
     
     public void clear(ActionEvent e) {
         togglePopulateClear(false);
         ucat.clear();
+        rcat.clear();
+        icat.clear();
+        ricat.clear();
     }
 
     private void togglePopulateClear(boolean toggle) {

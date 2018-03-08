@@ -90,7 +90,7 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
     
     // Find Recipes by Cookbook
     public List<Recipe> findByCookbook(String cookbookId) {
-        /*
+        
         QRecipe recipe = QRecipe.recipe;
         QCookbookRecipe cookbookRecipe = QCookbookRecipe.cookbookRecipe;
         JPAQueryFactory qf = new JPAQueryFactory(em);
@@ -103,19 +103,19 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
                 // Find all recipeIds connected to the specified cookbook       
                 (qf.select(cookbookRecipe.recipeId)
                 .from (cookbookRecipe)
-                .where(cookbookRecipe.cookbookId.eq(cookbookId)))
-            .fetch()));
+                .where(cookbookRecipe.cookbookId.eq(cookbookId))))
+            .fetch());
                   
         out.println(recipes);
-        return recipes;*/
-        return null;
+        return recipes;
+
     }
     
     
     
     // Find all Recipes that belong to a specified category
     public List<Recipe> findByCategory(String category) {
-        /*
+        
         QRecipe recipe = QRecipe.recipe;
         QRecipeCategory recipeCategory = QRecipeCategory.recipeCategory;
         JPAQueryFactory qf = new JPAQueryFactory(em); 
@@ -128,12 +128,11 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
                 // Find all recipeIds connected to the specified Category        
                 (qf.select(recipeCategory.recipeId)
                 .from (recipeCategory)
-                .where(recipeCategory.category.eq(category)))
-            .fetch()));
+                .where(recipeCategory.category.eq(category))))
+            .fetch());
                   
         out.println(recipes);
-        return recipes;*/
-        return null;
+        return recipes;
     }
     
     // Find Recipes that belong to all the specified categories

@@ -28,20 +28,30 @@
         </b:container>   
         
 
-        <b:container style="background-color: #EEEEEE; height:200px;">
-            <b:row>
-                <b:dataTable id="userTable" var="r" value="#{userbean.findAll()}">
-                    <b:dataTableColumn label="Image" >
-                        <b:thumbnail span="2">
-                        <!--<b:image name="#{r.username}" value="#{r.picture}" style="height:150px; width: 100%;"/>-->
-                      </b:thumbnail>
+        <b:container style="background-color: #EEEEEE;">
+            <b:row style="margin:10px;">
+                <b:dataTable id="recipeTable" var="r" value="#{recipebean.findAll()}">
+                    
+                    <b:dataTableColumn label="Image" style="width:160px;" orderable="false">
+                        <b:thumbnail>
+                            <b:image value="resources/img/thumbnail.svg" style="height:150px; width: 100%;"/>
+                        </b:thumbnail>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Username">
-                        <h4>#{r.username}</h4>
+
+                    <b:dataTableColumn label="Title" style="width:600px;" id="ingredientTable">
+                        <h3>#{r.name}</h3>
+                        <p>Ingredients: #{ingredientbean.findByRecipeId(r.id)}</p>
+                        <!--<p>#{recipeingredientbean.findByRecipeId(r.id)[1].quantity} #{recipeingredientbean.findByRecipeId(r.id)[0].ingredientName}</p>-->
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Email">
-                        <h4>#{r.email}</h4>
+                    
+                    <b:dataTableColumn label="Date">
+                        <h4 style="text-align: center; margin-top: 4.5em;">#{r.creationTime}</h4>
                     </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Rating">
+                        <h4 style="text-align: center; margin-top: 4.5em;">#{r.creationTime}</h4>
+                    </b:dataTableColumn>
+                    
                 </b:dataTable>
               </b:row>
             <b:row>
@@ -53,24 +63,6 @@
                                      actionListener="#{db.clear}" binding="#{clearBtn}"/>
                 </b:form> 
             </b:row>
-            <!--<b:row>
-            <b:form id="userForm">
-                <b:dataTable  
-                    id="userTable"  
-                    widgetVar="me"
-                    var="a" value="#{userbean.findAll()}" span="12" 
-                    striped="true"
-                    page-length-menu="5,10,20"
-                    page-length="5"
-                    onpage="console.log(me); ajax:userbean.page()"
-                    >             
-                    <b:dataTableColumn value="#{a.email}" order="asc"  />
-                    <b:dataTableColumn value="#{a.username}" />
-                    <b:dataTableColumn value="#{a.picture}" />
-              
-                </b:dataTable>
-            </b:form>
-        </b:row>-->
         </b:container>
         
     </ui:define>
