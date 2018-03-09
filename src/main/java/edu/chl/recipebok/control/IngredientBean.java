@@ -41,7 +41,7 @@ public class IngredientBean implements Serializable{
     private IngredientCatalogue icat;
     @Getter
     @Setter
-    private Ingredient tmp = new Ingredient("dfdfdf");
+    private Ingredient tmp = new Ingredient();
     private final int start = 0;
     private int nRecords = 50;
 

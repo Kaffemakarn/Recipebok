@@ -23,7 +23,7 @@ public class Recipe implements Serializable {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @Getter
     @Setter
@@ -37,6 +37,7 @@ public class Recipe implements Serializable {
     @Getter
     @Setter
     @ManyToOne
+    @JoinColumn(name = "creator")
     //@Column(nullable=false)
     private UserPerson creator;
 
@@ -47,7 +48,7 @@ public class Recipe implements Serializable {
 
     // TODO add image
 
-    public Recipe(Long id, String name, String instructions, UserPerson creator, String creationTime){
+    public Recipe(String id, String name, String instructions, UserPerson creator, String creationTime){
         this.id = id;
         this.name = name;
         this.instructions = instructions;

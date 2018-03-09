@@ -55,7 +55,7 @@ public class IngredientCatalogue extends AbstractQuery<Ingredient, String> {
         QRecipeIngredient recipeIngredient = QRecipeIngredient.recipeIngredient;
         QIngredient ingredient = QIngredient.ingredient;
         JPAQueryFactory qf = new JPAQueryFactory(em);
-        
+
         List<Ingredient> ingredients = 
                 (qf.select(ingredient)
                 .from(ingredient)
