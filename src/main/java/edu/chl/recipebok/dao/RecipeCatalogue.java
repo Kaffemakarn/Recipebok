@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 
 @Stateless
-public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
+public class RecipeCatalogue extends AbstractQuery<Recipe, String> {
 
     @PersistenceContext(unitName = "recipebok_pu")
     private EntityManager em;
@@ -66,6 +66,7 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
     
     // Find Recipes by recipe name
     public List<Recipe> findByName(String name) {
+        
         QRecipe recipe = QRecipe.recipe;
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Recipe> recipeList = qf.select(recipe)
@@ -79,6 +80,7 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
     
     // Find a recipe by user and recipe name
     public Recipe findByUserAndName(UserPerson user, String name) {
+        
         QRecipe recipe = QRecipe.recipe;
         JPAQueryFactory qf = new JPAQueryFactory(em);
         List<Recipe> foundList = qf.select(recipe)
@@ -111,7 +113,6 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
                   
         out.println(recipes);
         return recipes;
-        //return null;
     }
     
       // Find Recipes by Cookbook
@@ -134,8 +135,6 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
                   
         out.println(recipes);
         return recipes;
-
-        //return null;
     }
     
     
@@ -207,7 +206,6 @@ public class RecipeCatalogue extends AbstractQuery<Recipe, Long> {
                   
         out.println(recipes);
         return recipes;
-        //return null;
     }
     
     // Find Recipes that use all the specified ingredients

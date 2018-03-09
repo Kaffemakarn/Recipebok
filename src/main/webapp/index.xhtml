@@ -73,7 +73,8 @@
                             </f:facet>
                         </b:modal>
 
-                        <b:button icon-awesome="fa-heart" style="margin-left:2em; margin-top:5em;" onclick="$('.modalPseudoClass').modal()"/>
+                        <!--<b:button icon-awesome="fa-heart" style="margin-left:2em; margin-top:5em;" onclick="$('.modalPseudoClass').modal()"/>-->
+                        <h:outputLink value="#{root}/cookbook/addToCookbook.xhtml?recipe=#{recipe}">Add to Cookbook</h:outputLink>
 
                     </b:dataTableColumn>
                     
