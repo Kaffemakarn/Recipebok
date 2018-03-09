@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author August
  */
 
-@EqualsAndHashCode (of = {"userId", "recipeId"})
+@EqualsAndHashCode (of = {"id", "recipe"})
 @NoArgsConstructor
 @Entity
 //@IdClass(RatingPK.class)
@@ -34,7 +34,7 @@ public class Rating  implements Serializable {
 
     @Getter
     @Setter
-    private int value;
+    private int ratingValue;
 
     @Getter
     @Setter
@@ -44,7 +44,7 @@ public class Rating  implements Serializable {
     public Rating(UserPerson user, Recipe recipe, int value, String comment) {
         this.user = user;
         this.recipe = recipe;
-        this.value = value;
+        this.ratingValue = value;
         this.comment = comment;
     }
 
@@ -54,7 +54,7 @@ public class Rating  implements Serializable {
         return "Rating{" +
                 "userId='" + user.getEmail() + '\'' +
                 ", recipeId='" + recipe.getId() + '\'' +
-                ", value=" + value +
+                ", value=" + ratingValue +
                 ", comment='" + comment + '\'' +
                 '}';
     }

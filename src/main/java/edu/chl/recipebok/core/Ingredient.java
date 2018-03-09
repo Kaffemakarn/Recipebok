@@ -17,7 +17,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 //@IdClass(IngredientPK.class)
-@Table( name="ingredient")
+//@Table( name="ingredient")
 public class Ingredient implements Serializable {
 
     @Id

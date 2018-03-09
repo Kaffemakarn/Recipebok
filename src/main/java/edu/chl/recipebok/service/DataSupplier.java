@@ -38,15 +38,12 @@ public class DataSupplier {
 
     static Recipe chicken = new Recipe("2", "Marinated Chicken", inst2, t, "1066-06-06");
     
-    static Recipe broth = new Recipe("3", "Broth broth", "Do stuff that makes a broth", t, "2017-03-20");
-    
     static Cookbook cookbook = new Cookbook(new Long(0001), s, "Beautiful Food");
     
     //user recipe value comment
     static Rating rating1 = new Rating(s, tomatosoup, 4, "Great");
     static Rating rating2 = new Rating(t, tomatosoup, 1, "Not good");
     static Rating rating3 = new Rating(t, chicken, 5, "Amazing");
-    static Rating rating4 = new Rating(t, broth, 5, "Amazing");
     
     
     
@@ -67,7 +64,6 @@ public class DataSupplier {
       
         recipes.add(tomatosoup);
         recipes.add(chicken);
-        recipes.add(broth);
         
         return recipes;
         
@@ -79,7 +75,6 @@ public class DataSupplier {
         ratings.add(rating1);
         ratings.add(rating2);
         ratings.add(rating3);
-        ratings.add(rating4);
 
         return ratings;
     }
@@ -100,10 +95,6 @@ public class DataSupplier {
         i.add(new RecipeIngredient(chicken, new Ingredient("Soy sauce"), 2));
         i.add(new RecipeIngredient(chicken, new Ingredient("Spices"), 15));
         
-        i.add(new RecipeIngredient(broth, new Ingredient("Water"), 10));
-        i.add(new RecipeIngredient(broth, new Ingredient("Vegtables"), 20));
-        i.add(new RecipeIngredient(broth, new Ingredient("Spices"), 5));
-        
         return i;       
     }
     
@@ -117,7 +108,6 @@ public class DataSupplier {
         i.add(new Ingredient("Spices"));
         i.add(new Ingredient("Water"));
         i.add(new Ingredient("Bread"));
-        i.add(new Ingredient("Vegtables"));
         
         return i;
         
@@ -139,7 +129,6 @@ public class DataSupplier {
         
         l.add(new CookbookRecipe(cookbook, tomatosoup));
         l.add(new CookbookRecipe(cookbook, chicken));
-        l.add(new CookbookRecipe(cookbook, broth));
         
         return l;
     }

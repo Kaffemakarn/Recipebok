@@ -16,8 +16,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-//@Table(name="recipe" ) // TODO should become "Recipe" by default, is that ok?
-@Table(name="recipe", uniqueConstraints= { @UniqueConstraint(columnNames = {"id", "name"})})
+//@Table(name="recipe" ) 
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"creator", "name"})})
 public class Recipe implements Serializable {
 
     @Getter
