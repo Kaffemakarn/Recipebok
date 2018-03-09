@@ -4,7 +4,8 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <script src="https://smartlock.google.com/client"></script>
      <h:outputStylesheet library="css" name="default.css"  />
     
@@ -30,7 +31,13 @@
 
         <b:container style="background-color: #EEEEEE;">
             <b:row style="margin:10px;">
-                <b:dataTable id="recipeTable" var="r" value="#{recipebean.findAll()}">
+                <b:dataTable 
+                    id="recipeTable" 
+                    var="r" 
+                    value="#{recipebean.findAll()}" 
+                    striped="true"
+                    page-length-menu="5,10,20"
+                    page-length="5">
                     
                     <b:dataTableColumn label="Image" style="width:160px;" orderable="false">
                         <b:thumbnail>
@@ -38,10 +45,9 @@
                         </b:thumbnail>
                     </b:dataTableColumn>
 
-                    <b:dataTableColumn label="Title" style="width:600px;" id="ingredientTable">
+                    <b:dataTableColumn label="Title" style="width:500px;" id="ingredientTable">
                         <h3>#{r.name}</h3>
-                        <p>Ingredients: #{ingredientbean.findByRecipe(r.id)}</p>
-                        <!--<p>#{recipeingredientbean.findByRecipeId(r.id)[1].quantity} #{recipeingredientbean.findByRecipeId(r.id)[0].ingredientName}</p>-->
+                        <!--<p>Ingredients: #{ingredientbean.findByRecipe(r)}</p>-->
                     </b:dataTableColumn>
                     
                     <b:dataTableColumn label="Date">
@@ -50,6 +56,25 @@
                     
                     <b:dataTableColumn label="Rating">
                         <h4 style="text-align: center; margin-top: 4.5em;">#{r.creationTime}</h4>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Favorite" orderable="false">
+                        
+                        <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <f:facet name="footer">
+                              <b:button value="Close" dismiss="modal" />
+                              <b:button value="Ok" look="primary" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+
+                        <b:button icon-awesome="fa-heart" style="margin-left:2em; margin-top:5em;" onclick="$('.modalPseudoClass').modal()"/>
+
                     </b:dataTableColumn>
                     
                 </b:dataTable>
