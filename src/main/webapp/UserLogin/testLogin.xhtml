@@ -16,9 +16,10 @@ and open the template in the editor.
     
     <h:head>
         <h:outputStylesheet library="css" name="style.css"/>
-        <h:outputScript library= "js" name="index2.js"/>
-        <h:outputScript library= "js" name="firebase.js"/>
-
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+        <!--<h:outputScript library= "js" name="index2.js"/>-->
+        <!--<h:outputScript library= "js" name="firebase.js"/>-->
+        
 
 
         <title>Login test</title>
@@ -40,26 +41,78 @@ and open the template in the editor.
         
     
   
-  <!--Configure firebase-->
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyBqpKfLJRB4qlk5jWNYN3YgIaa8obYWjMY",
-        authDomain: "recipebok.firebaseapp.com",
-        databaseURL: "https://recipebok.firebaseio.com",
-        projectId: "recipebok",
-        storageBucket: "recipebok.appspot.com",
-        messagingSenderId: "287255300496",
-        clientId : "287255300496-iktt97r9vie0imuvq3a31n3gh7bmmhha.apps.googleusercontent.com",
+    <!--Configure firebase-->
+        <script>
+        // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBqpKfLJRB4qlk5jWNYN3YgIaa8obYWjMY",
+                authDomain: "recipebok.firebaseapp.com",
+                databaseURL: "https://recipebok.firebaseio.com",
+                projectId: "recipebok",
+                storageBucket: "recipebok.appspot.com",
+                messagingSenderId: "287255300496",
+                clientId : "287255300496-iktt97r9vie0imuvq3a31n3gh7bmmhha.apps.googleusercontent.com",
 
-          scopes: [
-                 "email",
-                 "profile"
-        ]
-      };
-      firebase.initializeApp(config);
+                scopes: [
+                       "email",
+                       "profile"
+              ]
+            };
+            firebase.initializeApp(config);
 
-    </script>
+        </script>
+    
+    <!--Firebase operations-->    
+        <script>
+            
+            firebase.auth().onAuthStateChanged(function(user) {
+                
+                if (user) {
+                    // User is signed in.
+
+                    document.getElementById("user_div").style.display = "block";
+                    document.getElementById("login_div").style.display = "none";
+
+                    var user = firebase.auth().currentUser;
+
+                    if(user != null){
+                        var email_id = user.email;
+                        document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+
+                    }
+
+                } else {
+                    // No user is signed in.
+
+                    document.getElementById("user_div").style.display = "none";
+                    document.getElementById("login_div").style.display = "block";
+
+                }
+            });
+
+            function login(){
+
+                var userEmail = document.getElementById("email_field").value;
+                var userPass = document.getElementById("password_field").value;
+
+                firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+
+                    window.alert("Error : " + errorMessage);
+
+                    // ...
+                });
+
+            }
+
+            function logout(){
+                firebase.auth().signOut();
+            }
+            
+        </script>
+      
     </h:body>
 
 </html>
