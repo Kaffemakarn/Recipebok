@@ -16,8 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name="userperson" )
-//TODO "User is a reserved SQL99 keyword"? 
+//@Table(name="userperson" )
 public class UserPerson implements Serializable {
 
     @Getter
