@@ -35,8 +35,11 @@ and open the template in the editor.
         </div>
 
         
-        <ui:include id="user_div" src="../index.xhtml" />
-            <!--<button onclick="logout()">Logout</button>-->
+        <ui:include id="user_div" src="../index.xhtml">
+            <ui:define name="logout_button">
+                <button onclick="logout()">Logout</button>
+            </ui:define>
+        </ui:include>
         
         
         <div id="register_div" class="registered-div " style=" display: none">
@@ -153,6 +156,8 @@ and open the template in the editor.
             function logout(){
                 firebase.auth().signOut();
             }
+            
+            
             
         </script>
       
