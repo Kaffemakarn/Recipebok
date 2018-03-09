@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+ <head>
+    <title>Firebase Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet"/>
+    <link rel="stylesheet" type= "text/css" href="style.css" media="all" />
+    <script type = "text/javaScript" src ="index2.js"></script>
+ 
+</head>
+    
+    <body>
+
+<div id="login_div" class="main-div">
+    <h3> Web login </h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Login to Account</button>
+</div>
+
+        <div id="user_div" class="loggedin-div " style=" display: none">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+    <button onclick="logout()">Logout</button>
+</div>
+
+
+        <!-- <h:head>
+        <title>Login</title>
+         <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  <link rel="stylesheet" href="style.css" />
+  
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+        </style>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: #add;">
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading"> Login </h2>
+                <b:inputText id="email" placeholder="Email address" >
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                <b:inputText id="password" placeholder="Password" type="password">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                <b:selectBooleanCheckbox value="true" caption="remember me"/>
+                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg"/>
+            </h:form>
+        </b:container>
+        
+         <div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+    <button onclick="logout()">Logout</button>
+</div>
+    </h:body> --> 
+    
+    <!--Include firebase.js  -->
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+  
+  <!--Configure firebase-->
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBqpKfLJRB4qlk5jWNYN3YgIaa8obYWjMY",
+    authDomain: "recipebok.firebaseapp.com",
+    databaseURL: "https://recipebok.firebaseio.com",
+    projectId: "recipebok",
+    storageBucket: "recipebok.appspot.com",
+    messagingSenderId: "287255300496",
+    clientId : "287255300496-iktt97r9vie0imuvq3a31n3gh7bmmhha.apps.googleusercontent.com",
+    
+      scopes: [
+             "email",
+             "profile"
+    ]
+  };
+  firebase.initializeApp(config);
+  
+  
+  
+   //var uiConfig = {
+  //signInSuccessUrl: "localhost:8080", // Assuming you are running on your local machine
+  //signInOptions: [
+    //{
+      //provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      //scopes: config.scopes
+    //}
+  //]
+//};
+</script>
+    </body>
+</html>
