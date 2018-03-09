@@ -67,10 +67,12 @@ public class DatabaseBean {
     
     public void clear(ActionEvent e) {
         togglePopulateClear(false);
-        ucat.clear();
-        rcat.clear();
-        icat.clear();
         ricat.clear();
+        icat.clear();
+        rcat.clear();
+        ucat.clear();
+        
+        
     }
 
     private void togglePopulateClear(boolean toggle) {

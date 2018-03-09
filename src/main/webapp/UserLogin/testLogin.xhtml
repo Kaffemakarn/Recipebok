@@ -34,11 +34,10 @@ and open the template in the editor.
             <p onclick="goToRegister()" style='margin-bottom:0;'>Don't have an account?</p><p onclick="goToRegister()" style='margin-top:0;'> Register here</p>
         </div>
 
-        <div id="user_div" class="loggedin-div " style=" display: none">
-            <p>hej I am here</p>
-            <ui:include src="../index.xhtml" />
+        
+        <ui:include id="user_div" src="../index.xhtml" />
             <!--<button onclick="logout()">Logout</button>-->
-        </div>
+        
         
         <div id="register_div" class="registered-div " style=" display: none">
             <h3>Create Account</h3>
