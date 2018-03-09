@@ -33,6 +33,8 @@ public class UserPerson implements Serializable {
     @Setter
     private String picture; //TODO Find out how to handle images.
     
+    
+    
     public UserPerson(String email, String username, String picture){
         this.email = email;
         this.username = username;

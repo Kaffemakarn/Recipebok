@@ -5,7 +5,11 @@
  */
 package edu.chl.recipebok.control;
 
+import edu.chl.recipebok.core.Category;
+import edu.chl.recipebok.core.Cookbook;
+import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
@@ -29,13 +33,13 @@ import net.bootsfaces.utils.FacesMessages;
  * @author Mickaela
  */
 @Named("recipebean")
-@RequestScoped
-//@SessionScoped
+//@RequestScoped
+@SessionScoped
 public class RecipeBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
-    //@EJB
-    //private RecipeCatalogue rcat;
+    @EJB
+    private RecipeCatalogue rcat;
     @Getter
     @Setter
     private Recipe tmp = new Recipe();
@@ -64,17 +68,16 @@ public class RecipeBean implements Serializable {
 
     // --------- Call backend -------------------------
     public void setRecipe() {
-        //tmp = rcat.find(tmp.getId());
+        tmp = rcat.find(tmp.getId());
     }
 
     public List<Recipe> findAll() {
-        //return rcat.findAll();
-        return null;
+        return rcat.findAll();
     }
 
     public void add() {
         //tmp.setAddress(DataSupplier.getRandomAddress());
-        /*
+        
         try {
             rcat.create(tmp);
             FacesMessages.info("Success");
@@ -83,69 +86,62 @@ public class RecipeBean implements Serializable {
             FacesMessages.info("Fail " + message);
         }
         tmp = new Recipe();
-*/
+
     }
 
     public void update() {
-        //rcat.update(tmp);
+        rcat.update(tmp);
         tmp = new Recipe();
     }
 
     public void delete() {
-        //rcat.delete(tmp.getId());
+        rcat.delete(tmp.getId());
         tmp = new Recipe();
     }
     
     
     // Find recipes by user
-    public List<Recipe> findByUser(String user) {
-        //return rcat.findByUser(user);
-        return null;
+    public List<Recipe> findByUser(UserPerson user) {
+        return rcat.findByUser(user);
     }
     
     // Find recipes by recipe name
     public List<Recipe> findByName(String name) {
-        //return rcat.findByName(name);
-        return null;
+        return rcat.findByName(name);
     }
     
       // Find a recipe by user and recipe name
-    public Recipe findByUserAndName(String user, String name) {
-        //return rcat.findByUserAndName(user, name);
-        return null;
+    public Recipe findByUserAndName(UserPerson user, String name) {
+        return rcat.findByUserAndName(user, name);
     }
 
     // Find Recipes by Cookbook
-    public List<Recipe> findByCookbook(String cookbookId) {
-        //return rcat.findByCookbook(cookbookId);
-        return null;
+    public List<Recipe> findByCookbook(Cookbook cookbookId) {
+        return rcat.findByCookbook(cookbookId);
     }
 
-
+/*
     // Find all Recipes that belong to a specified category
-    public List<Recipe> findByCategory(String category) {
-        //return rcat.findByCategory(category);
-        return null;
+    public List<Recipe> findByCategory(Category category) {
+        return rcat.findByCategory(category);
     }
+    
     
     // Find Recipes that belong to all the specified categories
-    public List<Recipe> findByCategories(List<String> categories) {
-        //return rcat.findByCategories(categories);
-        return null;
+    public List<Recipe> findByCategories(List<Category> categories) {
+        return rcat.findByCategories(categories);
     }
-    
+    */
     
     // Find Recipes that use the specified ingredient. 
-    public List<Recipe> findByIngredient(String ingredient) {
-        //return rcat.findByIngredient(ingredient);
-        return null;
+    public List<Recipe> findByIngredient(Ingredient ingredient) {
+        return rcat.findByIngredient(ingredient);
     }
     
     
     // Find Recipes that use all the specified ingredients
-    public List<Recipe> findByIngredients(List<String> ingredients) {
-        //return rcat.findByIngredients(ingredients);
-        return null;
+    public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
+        return rcat.findByIngredients(ingredients);
     }
     
 }

@@ -38,7 +38,7 @@ public class IngredientBean implements Serializable{
     private static final Logger LOG = Logger.getLogger(IngredientBean.class.getName());
     
     @EJB
-    private IngredientCatalogue ingredientCat;
+    private IngredientCatalogue icat;
     @Getter
     @Setter
     private Ingredient tmp = new Ingredient("dfdfdf");
@@ -54,7 +54,7 @@ public class IngredientBean implements Serializable{
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("authorForm:authorTable");
+       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("ingredientTable");
        
        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
@@ -67,14 +67,17 @@ public class IngredientBean implements Serializable{
     
   // --------- Call backend -------------------------
     public void setIngredient() {
-        tmp = (Ingredient) ingredientCat.findByName(tmp.getName());
+        tmp = (Ingredient) icat.findByName(tmp.getName());
     }
 
+    public List<Ingredient> findAll() {
+        return icat.findAll();
+    }
    
      public void add() {
          
         try {
-            ingredientCat.create(tmp);
+            icat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
@@ -86,7 +89,7 @@ public class IngredientBean implements Serializable{
 
     public void update() {
         
-        ingredientCat.update(tmp);
+        icat.update(tmp);
         tmp = new Ingredient();
 
     }
@@ -94,7 +97,11 @@ public class IngredientBean implements Serializable{
            // Find a ingredient by name
     public List<Ingredient> findByName(String name) {
         
-        return ingredientCat.findByName(name);
+        return icat.findByName(name);
 
+    }
+    
+    public List<Ingredient> findByRecipe(Recipe recipe) {
+        return icat.findByRecipe(recipe);
     }
 }

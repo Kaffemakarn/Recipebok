@@ -4,7 +4,8 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <script src="https://smartlock.google.com/client"></script>
      <h:outputStylesheet library="css" name="default.css"  />
     
@@ -28,40 +29,65 @@
         </b:container>   
         
 
-        <b:container style="background-color: #EEEEEE; height:200px;">
-            <!--<b:row>
-                <b:dataTable id="testTable" var="r" value="#{userbean.findAll()}">
-                    <b:column col-sm="6" col-md="4">
-                        <b:thumbnail span="8">
-                        b:image name="#{r.name}" value="#{r.img}" style="height:150px; width: 100%;"/>
-                        <f:facet name="caption">
-                            <h3 value="#{r.name}" style="margin-top: 0;text-align: center;"/>
-                          <p>
-                          <b:button icon-awesome="fa-heart"/>
-                          </p>
-                        </f:facet>
-                      </b:thumbnail>
-                    </b:column>
-                </b:dataTable>
-              </b:row>-->
-            <b:row>
-            <b:form id="userForm">
-                <b:dataTable  
-                    id="userTable"  
-                    widgetVar="me"
-                    var="a" value="#{userbean.findAll()}" span="12" 
+        <b:container style="background-color: #EEEEEE;">
+            <b:row style="margin:10px;">
+                <b:dataTable 
+                    id="recipeTable" 
+                    var="r" 
+                    value="#{recipebean.findAll()}" 
                     striped="true"
                     page-length-menu="5,10,20"
-                    page-length="5"
-                    onpage="console.log(me); ajax:userbean.page()"
-                    >             
-                    <b:dataTableColumn value="#{a.email}" order="asc"  />
-                    <b:dataTableColumn value="#{a.username}" />
-                    <b:dataTableColumn value="#{a.picture}" />
-              
+                    page-length="5">
+                    
+                    <b:dataTableColumn label="Image" style="width:160px;" orderable="false">
+                        <b:thumbnail>
+                            <b:image value="resources/img/thumbnail.svg" style="height:150px; width: 100%;"/>
+                        </b:thumbnail>
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn label="Title" style="width:500px;" id="ingredientTable">
+                        <h3>#{r.name}</h3>
+                        <!--<p>Ingredients: #{ingredientbean.findByRecipe(r)}</p>-->
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Date">
+                        <h4 style="text-align: center; margin-top: 4.5em;">#{r.creationTime}</h4>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Rating">
+                        <h4 style="text-align: center; margin-top: 4.5em;">#{r.creationTime}</h4>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Favorite" orderable="false">
+                        
+                        <b:modal id="amodal" title="Modal Example" styleClass="modalPseudoClass">
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            <f:facet name="footer">
+                              <b:button value="Close" dismiss="modal" />
+                              <b:button value="Ok" look="primary" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+
+                        <b:button icon-awesome="fa-heart" style="margin-left:2em; margin-top:5em;" onclick="$('.modalPseudoClass').modal()"/>
+
+                    </b:dataTableColumn>
+                    
                 </b:dataTable>
-            </b:form>
-        </b:row>
+              </b:row>
+            <b:row>
+                <b:form>
+                    <b:commandButton value="Populate database" look="success" size="xs" span="2"
+                                     actionListener="#{db.populate}" binding="#{populateBtn}"/>
+
+                    <b:commandButton value="Clear database" look="warning" size="xs" span="2"
+                                     actionListener="#{db.clear}" binding="#{clearBtn}"/>
+                </b:form> 
+            </b:row>
         </b:container>
         
     </ui:define>

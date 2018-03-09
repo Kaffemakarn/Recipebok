@@ -6,6 +6,7 @@
 package edu.chl.recipebok.control;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.CookbookCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
@@ -100,13 +101,13 @@ public class CookbookBean implements Serializable {
     }
      
         // Find a cookbook by user and cookbook name
-    public Cookbook findByUserAndName(String user, String cookbookname) {
+    public Cookbook findByUserAndName(UserPerson user, String cookbookname) {
         return cbCat.findByUserAndName(user, cookbookname);
     }
 
-    // Find cookbooks by cookbook name
-    public List<Cookbook> findByUser(String name) {
-        return cbCat.findByUser(name);
+        // Find cookbooks by user
+    public List<Cookbook> findByUser(UserPerson user) {
+        return cbCat.findByUser(user);
     }
     
 }

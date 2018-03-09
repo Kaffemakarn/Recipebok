@@ -9,6 +9,10 @@ import javax.persistence.PersistenceContext;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.QIngredient;
+import edu.chl.recipebok.core.QRecipeIngredient;
+import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.RecipeIngredient;
+import java.util.ArrayList;
 
 /**
  * DAO for authors, an stateless EJB session bean
@@ -46,4 +50,23 @@ public class IngredientCatalogue extends AbstractQuery<Ingredient, String> {
         out.println(found);
         return found;
     }
+    
+    public List<Ingredient> findByRecipe(Recipe recipe) {
+        QRecipeIngredient recipeIngredient = QRecipeIngredient.recipeIngredient;
+        QIngredient ingredient = QIngredient.ingredient;
+        JPAQueryFactory qf = new JPAQueryFactory(em);
+        
+        List<Ingredient> ingredients = 
+                (qf.select(ingredient)
+                .from(ingredient)
+                .where(ingredient.in
+                    (qf.select(recipeIngredient.ingredient)
+                    .from(recipeIngredient)
+                    .where(recipeIngredient.recipe.eq(recipe))))
+                .fetch());
+  
+        out.println(ingredients);
+        return ingredients;
+    }
+
 }

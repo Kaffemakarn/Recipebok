@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -13,16 +14,18 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class RecipePK implements Serializable {
 
+    @ManyToOne
     @Getter
-    private String creator;
+    private UserPerson creator;
 
+    @ManyToOne
     @Getter
-    private String recipeId;
+    private Recipe recipe;
 
 
-    public RecipePK(String creator, String recipeId) {
+    public RecipePK(UserPerson creator, Recipe recipe) {
         this.creator = creator;
-        this.recipeId = recipeId;
+        this.recipe = recipe;
     }
 
 
@@ -30,7 +33,7 @@ public class RecipePK implements Serializable {
     public String toString() {
         return "RecipePK{" +
                 "creator ='" + creator + '\'' +
-                ", recipeId='" + recipeId + '\'' +
+                ", recipeId='" + recipe + '\'' +
                 '}';
     }
 }
