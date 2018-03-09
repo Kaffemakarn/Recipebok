@@ -26,18 +26,29 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <div id="login_div" class="main-div">
-            <h3> Web login </h3>
+            <h3> Login </h3>
             <input type="email" placeholder="Email..." id="email_field" />
             <input type="password" placeholder="Password..." id="password_field" />
 
-            <button onclick="login()">Login to Account</button>
+            <button onclick="login()" >Login to Account</button>
+            <p onclick="goToRegister()" style='margin-bottom:0;'>Don't have an account?</p><p onclick="goToRegister()" style='margin-top:0;'> Register here</p>
         </div>
 
         <div id="user_div" class="loggedin-div " style=" display: none">
-            <h3>Welcome User</h3>
-            <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
-            <button onclick="logout()">Logout</button>
+            <p>hej I am here</p>
+            <ui:include src="../index.xhtml" />
+            <!--<button onclick="logout()">Logout</button>-->
         </div>
+        
+        <div id="register_div" class="registered-div " style=" display: none">
+            <h3>Create Account</h3>
+            <input id="name_field_register" type="name"  placeholder="Name..."/>
+            <input id="email_field_register" type="email"  placeholder="Email..."/>
+            <input type="password" placeholder="Password..." id="password_field_register" />
+            <button onclick="register()">Register</button>
+            <p onclick="goToLogin()">Back to login</p>
+        </div>
+
         
     
   
@@ -65,6 +76,7 @@ and open the template in the editor.
     <!--Firebase operations-->    
         <script>
             
+            var credential;
             firebase.auth().onAuthStateChanged(function(user) {
                 
                 if (user) {
@@ -72,24 +84,40 @@ and open the template in the editor.
 
                     document.getElementById("user_div").style.display = "block";
                     document.getElementById("login_div").style.display = "none";
+                    document.getElementById("register_div").style.display = "none";
+                    
+                    //window.location.replace("../Recipebok/index.xhtml");
 
                     var user = firebase.auth().currentUser;
-
-                    if(user != null){
-                        var email_id = user.email;
-                        document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
-
-                    }
+                    
+                    //if(user != null){
+                        //var email_id = user.email;
+                        //document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+                        
+                    //}
 
                 } else {
                     // No user is signed in.
 
                     document.getElementById("user_div").style.display = "none";
                     document.getElementById("login_div").style.display = "block";
+                    document.getElementById("register_div").style.display = "none";
 
                 }
             });
-
+            
+            function goToRegister(){
+                document.getElementById("user_div").style.display = "none";
+                document.getElementById("login_div").style.display = "none";
+                document.getElementById("register_div").style.display = "block";
+            }
+            
+             function goToLogin(){
+                document.getElementById("user_div").style.display = "none";
+                document.getElementById("login_div").style.display = "block";
+                document.getElementById("register_div").style.display = "none";
+            }
+            
             function login(){
 
                 var userEmail = document.getElementById("email_field").value;
@@ -107,6 +135,22 @@ and open the template in the editor.
 
             }
 
+            function register() {
+              var email = document.getElementById("email_field_register").value;
+              var password = document.getElementById("password_field_register").value;
+              if (!email || !password) {
+                return console.log('email and password required');
+              }
+              // Register user
+              firebase.auth().createUserWithEmailAndPassword(email, password)
+                .catch(function(error) {
+                  console.log('register error', error);
+                  if (error.code === 'auth/email-already-in-use') {
+                  var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+                  }
+                });
+            };
+        
             function logout(){
                 firebase.auth().signOut();
             }
