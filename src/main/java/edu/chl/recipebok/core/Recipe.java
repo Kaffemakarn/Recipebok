@@ -17,7 +17,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(of = {"id"})
 @Entity
 //@Table(name="recipe" ) 
-@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"id", "name"})})
+@Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"creator", "name"})})
 public class Recipe implements Serializable {
 
     @Getter
