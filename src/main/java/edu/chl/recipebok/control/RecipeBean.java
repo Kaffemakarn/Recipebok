@@ -9,8 +9,10 @@ import edu.chl.recipebok.core.Category;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
+import edu.chl.recipebok.core.RecipeIngredient;
 import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.RecipeCatalogue;
+import edu.chl.recipebok.dao.RecipeIngredientCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -40,6 +42,8 @@ public class RecipeBean implements Serializable {
     private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
     @EJB
     private RecipeCatalogue rcat;
+    @EJB
+    private RecipeIngredientCatalogue ricat;
     @Getter
     @Setter
     private Recipe tmp = new Recipe();
@@ -142,6 +146,12 @@ public class RecipeBean implements Serializable {
     // Find Recipes that use all the specified ingredients
     public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
         return rcat.findByIngredients(ingredients);
+    }
+    
+    
+    
+    public List<RecipeIngredient> findRecipeIngredients(Recipe recipe){
+        return ricat.findByRecipe(recipe);
     }
     
 }

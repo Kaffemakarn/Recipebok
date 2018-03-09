@@ -6,7 +6,11 @@
                       
     <url-mapping id="home"> 
         <pattern value="/" /> 
-        <view-id value="/index.xhtml" />
+        <view-id value="/recipe/recipe.xhtml?id=1" />
+    </url-mapping>
+    <url-mapping id="view-recipe"> 
+        <pattern value="/recipe/#{id}" /> 
+        <view-id value="/recipe/recipe.xhtml?id=#{id}" />
     </url-mapping> 
     
 </pretty-config>    

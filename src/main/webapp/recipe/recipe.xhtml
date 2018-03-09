@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <script src="https://smartlock.google.com/client"></script>
+    <h:outputStylesheet library="css" name="default.css"  />
+    
+    <ui:define name="content"> 
+        <f:metadata>
+            <f:viewParam name="id" value="#{recipebean.tmp.id}"/>
+            <f:viewAction action="#{recipebean.setRecipe()}"/>
+        </f:metadata>
+
+        <b:container>
+            <b:row>
+                <h2>RECIPE</h2>
+            </b:row>
+            
+        </b:container>   
+        
+
+        <b:container style="background-color: #EEEEEE;">
+            
+            <b:row style="padding-top: 15px; padding-bottom: 15px">
+                <b:column span='5'>
+                    <b:form>
+                    <b:commandButton value="Populate database" look="success" size='xs' style='margin-right: 10px'
+                                     actionListener="#{db.populate}" binding="#{populateBtn}"/>
+
+                    <b:commandButton value="Clear database" look="warning"  size='xs' 
+                                     actionListener="#{db.clear}" binding="#{clearBtn}"/>
+                    </b:form> 
+                </b:column>                
+            </b:row>
+        </b:container>
+        
+        
+        <b:container>
+            
+            <b:row style='padding-top: 1em; padding-bottom: 1em'>
+                <h1>#{recipebean.tmp.name}</h1>
+            </b:row>
+            <b:row>
+                <b:column span='8' >
+                    <b:image name='Recipe image' value='resources/img/thumbnail.svg' width="800" />
+                </b:column>
+            </b:row>
+            <b:row style="padding-top: 15px; margin-right: auto; margin-left: auto">
+                <b:column span='3'>
+                    <p style='font-size: 22pt;'>Ingredients: </p>
+                    <b:dataTable 
+                        id="recipeIngredientsTable" 
+                        var="ri" 
+                        value="#{recipebean.findRecipeIngredients(recipebean.tmp)}" 
+                        striped="true"
+                        paginated="false"
+                        row-highlight="false"
+                        searching="false"
+                        
+                        >
+
+                        <b:dataTableColumn label="" orderable="false" value= "#{ri.quantity}" />
+
+                        <b:dataTableColumn label=""  orderable="false" value= "#{ri.ingredient.name}" />
+
+                        
+
+                    </b:dataTable>
+                    
+                </b:column>
+                <b:column span='5'>
+                    <p style='font-size: 22pt;'>Instructions: </p>
+                    <p style='font-size: 14pt; padding-top: 10px;'>
+                        #{recipebean.tmp.instructions}
+                    </p>
+                    
+                </b:column>
+            </b:row>
+            
+            
+        </b:container>
+        
+        
+    </ui:define>
+    
+</ui:composition>
