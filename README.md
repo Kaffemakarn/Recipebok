@@ -5,8 +5,11 @@ This is a project for the DAT076 course at Chalmers.
 Members of this group are:
 
 Raha Dadgar
+
 August Lennar
+
 Sabrina Samuelsson
+
 Mickaela Södergren
 
 #### Notes
