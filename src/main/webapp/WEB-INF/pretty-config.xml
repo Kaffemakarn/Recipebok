@@ -6,7 +6,7 @@
                       
     <url-mapping id="home"> 
         <pattern value="/" /> 
-        <view-id value="/recipe/recipe.xhtml?id=1" />
+        <view-id value="UserLogin/testLogin.xhtml" />
     </url-mapping>
     <url-mapping id="view-recipe"> 
         <pattern value="/recipe/#{id}" /> 

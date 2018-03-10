@@ -34,13 +34,10 @@ and open the template in the editor.
             <p onclick="goToRegister()" style='margin-bottom:0;'>Don't have an account?</p><p onclick="goToRegister()" style='margin-top:0;'> Register here</p>
         </div>
 
-        
-        <ui:include id="user_div" src="../index.xhtml">
-            <ui:define name="logout_button">
-                <button onclick="logout()">Logout</button>
-            </ui:define>
-        </ui:include>
-        
+        <div id="user_div">
+            <ui:include src="../index.xhtml"/>
+            <button id="user_div_button" onclick="logout()">Logout</button>
+        </div>
         
         <div id="register_div" class="registered-div " style=" display: none">
             <h3>Create Account</h3>
@@ -85,6 +82,7 @@ and open the template in the editor.
                     // User is signed in.
 
                     document.getElementById("user_div").style.display = "block";
+                    document.getElementById("user_div_button").style.display = "block";
                     document.getElementById("login_div").style.display = "none";
                     document.getElementById("register_div").style.display = "none";
                     
@@ -101,9 +99,11 @@ and open the template in the editor.
                 } else {
                     // No user is signed in.
 
+                    //document.getElementById("user_div").src = "../empty.html";
                     document.getElementById("user_div").style.display = "none";
                     document.getElementById("login_div").style.display = "block";
                     document.getElementById("register_div").style.display = "none";
+                    document.getElementById("user_div_button").style.display = "none";
 
                 }
             });
@@ -112,12 +112,17 @@ and open the template in the editor.
                 document.getElementById("user_div").style.display = "none";
                 document.getElementById("login_div").style.display = "none";
                 document.getElementById("register_div").style.display = "block";
+                document.getElementById("user_div_button").style.display = "none";
             }
             
              function goToLogin(){
+                 
+                 
+                
                 document.getElementById("user_div").style.display = "none";
                 document.getElementById("login_div").style.display = "block";
                 document.getElementById("register_div").style.display = "none";
+                document.getElementById("user_div_button").style.display = "none";
             }
             
             function login(){
