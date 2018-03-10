@@ -40,11 +40,14 @@ and open the template in the editor.
         </div>
         
         <div id="register_div" class="registered-div " style=" display: none">
-            <h3>Create Account</h3>
-            <input id="name_field_register" type="name"  placeholder="Name..."/>
-            <input id="email_field_register" type="email"  placeholder="Email..."/>
-            <input type="password" placeholder="Password..." id="password_field_register" />
-            <button onclick="register()">Register</button>
+
+                <h3>Create Account</h3>
+                <input id="name_field_register" type="name"  placeholder="Name..." value="#{userbean.tmp.username}"/>
+                <input id="email_field_register" type="email"  placeholder="Email..." value="#{userbean.tmp.email}"/>
+                <input type="password" placeholder="Password..." id="password_field_register" />
+                <button value="Register" onclick="register()" />
+
+            <!--<button onclick="register()" >Register</button>-->
             <p onclick="goToLogin()">Back to login</p>
         </div>
 
@@ -109,6 +112,7 @@ and open the template in the editor.
             });
             
             function goToRegister(){
+                
                 document.getElementById("user_div").style.display = "none";
                 document.getElementById("login_div").style.display = "none";
                 document.getElementById("register_div").style.display = "block";
@@ -156,6 +160,9 @@ and open the template in the editor.
                   var credential = firebase.auth.EmailAuthProvider.credential(email, password);
                   }
                 });
+                
+                #{userbean.add()};
+
             };
         
             function logout(){

@@ -20,6 +20,7 @@ import lombok.*;
 public class UserPerson implements Serializable {
 
     @Getter
+    @Setter
     @Id
     private String email;
     
