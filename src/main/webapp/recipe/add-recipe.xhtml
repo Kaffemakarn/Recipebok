@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <script src="https://smartlock.google.com/client"></script>
+    <h:outputStylesheet library="css" name="default.css"  />
+    
+    <ui:define name="content"> 
+        
+
+        <b:container>
+            <b:row>
+                <h2>ADD RECIPE</h2>
+            </b:row>
+            
+        </b:container>
+        
+        <b:container>
+            <b:row>
+                <b:column>
+                <h2>Add Recipe</h2>
+                </b:column>
+            </b:row>            
+        </b:container>
+        
+        <b:container>
+            <br/>
+            <b:column span="6">
+                <b:form>
+                
+                    <b:formGroup>
+                        <h4>Recipe name:</h4> 
+                        <b:inputText type="text" name="recipename" placeholder="Tomato soup"/> 
+                    </b:formGroup>
+                    
+                </b:form>
+                <h4>Ingredients:</h4>
+                <b:form horizontal="true" id="if">
+                    <b:formGroup id="ig">
+                        <b:inputText span="3" type="text" placeholder="10" name="quantity"/>
+                        <b:inputText span="9" type="text" placeholder="Tomato" name="ingredient"/>
+                        
+                    </b:formGroup>
+                </b:form>
+                <b:button span="13" value="Add ingredient" id="ingredient-button"></b:button>
+                <h4>Instructions:</h4>
+                <b:form>
+                    <b:formGroup>
+                        <b:inputTextarea placeholder="Begin by chopping the tomatoes..." ></b:inputTextarea>
+                    </b:formGroup>
+                </b:form>
+                
+                
+            </b:column>
+            
+            
+        </b:container>
+        <script>
+            
+            window.addEventListener("DOMContentLoaded", function() {
+                
+                var ingcount = 0;
+                document.getElementById("ingredient-button").onclick = function() {addIngredient()};
+                
+                function addIngredient(){
+                    
+                    var clone = document.getElementById("if:ig").cloneNode(true);
+                    clone.id="ing"+ingcount;                    
+                    document.getElementById("if").appendChild(clone);
+                    
+                    ingcount=ingcount+1;
+                    
+                    
+                }
+                
+                
+            }, false);
+            
+            
+            
+            
+            
+        </script> 
+        
+    </ui:define>
+        
+</ui:composition>

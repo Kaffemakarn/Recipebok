@@ -6,11 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
@@ -19,36 +18,33 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class Image implements Serializable{
-        
+public class UserImage implements Serializable {
+
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        
+
     @Getter
-    @Setter
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "userperson_email")
     private UserPerson user;
-   
-    @Getter
-    @Setter
-    private String filename;
 
-    public Image(Long id, UserPerson user, String filename) {
+    @Getter
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
+
+    public UserImage(Long id, UserPerson user, Image image) {
         this.id = id;
         this.user = user;
-        this.filename = filename;
+        this.image = image;
     }
 
     @Override
     public String toString() {
-        return "Image{" + "id=" + id + 
+        return "UserImage{" + "id=" + id + 
                 ", user=" + user + 
-                ", filename=" + filename + '}';
+                ", image=" + image + '}';
     }
-    
-    
-    
 }
