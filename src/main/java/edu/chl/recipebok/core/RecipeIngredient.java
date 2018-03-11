@@ -22,11 +22,13 @@ public class RecipeIngredient implements Serializable {
     
     //@Id
     @Getter
+    @Setter
     @ManyToOne
     private Recipe recipe;
 
     //@Id
     @Getter
+    @Setter
     @ManyToOne
     private Ingredient ingredient;
 

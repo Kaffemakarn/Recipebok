@@ -8,6 +8,7 @@ package edu.chl.recipebok.control;
 
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeIngredient;
+import edu.chl.recipebok.dao.IngredientCatalogue;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.dao.RecipeIngredientCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -42,11 +44,22 @@ public class RecipeIngredientBean implements Serializable {
     private RecipeCatalogue rcat;
     @EJB
     private RecipeIngredientCatalogue ricat;
+    @EJB
+    private IngredientCatalogue icat;
+    
     @Getter
     @Setter
     private RecipeIngredient tmp = new RecipeIngredient();
     private final int start = 0;
     private int nRecords = 50;
+    
+    @Getter
+    @Setter
+    private String ingredientname = "";
+    
+    @Getter
+    @Setter
+    private String recipeid = "";
 
     @Getter
     @Setter
@@ -79,6 +92,10 @@ public class RecipeIngredientBean implements Serializable {
     }
 
     public void add() {
+        
+        
+        tmp.setIngredient(icat.find(ingredientname));
+        tmp.setRecipe(rcat.find(recipeid));
         
         try {
             ricat.create(tmp);
