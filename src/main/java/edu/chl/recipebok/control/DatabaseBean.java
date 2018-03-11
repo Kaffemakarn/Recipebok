@@ -5,10 +5,12 @@
  */
 package edu.chl.recipebok.control;
 
+import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.RecipeIngredient;
 import edu.chl.recipebok.core.UserPerson;
+import edu.chl.recipebok.dao.CookbookCatalogue;
 import edu.chl.recipebok.dao.IngredientCatalogue;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.dao.RecipeIngredientCatalogue;
@@ -43,6 +45,10 @@ public class DatabaseBean {
     @EJB
     private RecipeIngredientCatalogue ricat;
 
+    @EJB
+    private CookbookCatalogue cbcat;
+    
+    
     @PostConstruct
     void post() {
         out.println( this + "Alive");
@@ -63,6 +69,11 @@ public class DatabaseBean {
         for(RecipeIngredient ri : DataSupplier.getRecipeIngredients()) {
             ricat.create(ri);
         }
+        for(Cookbook c : DataSupplier.getCookbooks()) {
+            cbcat.create(c);
+        }
+        
+        
     }
     
     public void clear(ActionEvent e) {
@@ -71,6 +82,7 @@ public class DatabaseBean {
         icat.clear();
         rcat.clear();
         ucat.clear();
+        cbcat.clear();
         
         
     }

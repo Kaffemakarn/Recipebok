@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Cookbook implements Serializable {
 
     @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;

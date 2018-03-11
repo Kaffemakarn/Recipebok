@@ -14,9 +14,9 @@
    
     <ui:define name="content"> 
         <!--<f:metadata>
-            <f:viewParam name="id" value="#{cookbook.tmp.id}"/>
+            <f:viewParam name="id" value="#{cookbookbean.tmp.id}"/>
             <f:viewAction action="#{cookbookbean.setCookbook()}"/>
-        </f:metadata> --> 
+        </f:metadata> -->
         
         <b:container >
             <b:row>
@@ -34,7 +34,22 @@
             </b:row>
         </b:container>
         
-       
+         <b:container style="background-color: #EEEEEE;">
+            
+            <b:row style="padding-top: 15px; padding-bottom: 15px">
+                <b:column span='5'>
+                    <b:form>
+                    <b:commandButton value="Populate database" look="success" size='xs' style='margin-right: 10px'
+                                     actionListener="#{db.populate}" binding="#{populateBtn}"/>
+
+                    <b:commandButton value="Clear database" look="warning"  size='xs' 
+                                     actionListener="#{db.clear}" binding="#{clearBtn}"/>
+                    </b:form> 
+                </b:column>                
+            </b:row>
+        </b:container>
+        
+        
         <b:container style="background-color: #EEEEEE;">
             <b:row style="margin:10px;">
                 <b:dataTable 
@@ -47,7 +62,8 @@
                     
                     <b:dataTableColumn label="Image" style="width:160px;" orderable="false">
                         <b:thumbnail>
-                            <b:image value="resources/img/thumbnail.svg" style="height:150px; width: 100%;"/>
+                            <b:image value="resources/img/recipeboook.png" style="height:150px; width: 65%;"/>
+                            
                         </b:thumbnail>
                     </b:dataTableColumn>
 
@@ -60,4 +76,7 @@
        </b:container>
     </ui:define>
     
+    <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 </ui:composition>
+
+
