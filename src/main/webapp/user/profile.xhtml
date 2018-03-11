@@ -11,13 +11,17 @@
     <h:outputStylesheet library="css" name="default.css"  />
     <h:outputStylesheet library="css" name="profile.css"  />
     
-    
+   
     <ui:define name="content"> 
+        <!--<f:metadata>
+            <f:viewParam name="id" value="#{cookbook.tmp.id}"/>
+            <f:viewAction action="#{cookbookbean.setCookbook()}"/>
+        </f:metadata> --> 
         
         <b:container >
             <b:row>
                 <b:column span="12">
-                    <h2 style="margin-bottom: 0;">My Profile</h2>
+                    <h2 style="margin-bottom: 0;text-align: center;margin-bottom: 0;"> Profile</h2>
                 </b:column>
             </b:row>
             <b:row>
@@ -25,7 +29,7 @@
             </b:row>
             <b:row>
                 <b:jumbotron style="height:250px;background-image: url(../resources/img/welcome_banner.jpg);background-size: cover; background-position: center center;"> 
-                    <p style="color: #FFFFFF;">This is the profile speaking..</p>
+                    <p style="color: #FFFFFF; text-align: center;margin-bottom: 0;font-size: 22pt;">My Cookbooks</p>
                 </b:jumbotron>
             </b:row>
         </b:container>
@@ -36,7 +40,7 @@
                 <b:dataTable 
                     id="cookbookTable" 
                     var="c"
-                    value="#{recipebean.findAll()}"
+                    value="#{cookbookbean.findAll() }"
                     striped="true"
                     page-length-menu="5,10,20"
                     page-length="5">
@@ -49,7 +53,6 @@
 
                     <b:dataTableColumn label="Cookbook Title" style="width:500px;" id="cookbookTitleTable">
                         <h3>#{c.name}</h3>
-                        <!--<p>Ingredients: #{ingredientbean.findByRecipe(r)}</p>-->
                     </b:dataTableColumn>
                     
                 </b:dataTable>
