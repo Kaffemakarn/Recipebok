@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <script src="https://smartlock.google.com/client"></script>
+    <h:outputStylesheet library="css" name="default.css"  />
+    
+    <ui:define name="content"> 
+        <f:metadata>
+            <f:viewParam name="email" value="#{userbean.tmp.email}"/>
+            <f:viewAction action="#{userbean.setUser()}"/>
+        </f:metadata>
+
+        <b:row>
+            <h2>ADD RECIPE</h2>
+        </b:row>
+        <b:row>
+            <b:column>
+            <h2>Add Recipe</h2>
+            
+            </b:column>
+        </b:row>            
+        
+        
+        <b:row>
+            
+            <b:column span="6" >
+                <b:row>
+                    <b:form id="recipe">
+                        <b:inputText id="test" value="#{userbean.tmp.email}" style="display:none;" />
+                        <b:inputText id="test2" value="#{recipebean.useremail}" style="display:none;"/>
+                        <b:inputText id="name" value="#{recipebean.tmp.name}" required="true"
+                                         placeholder="Tomato soup" />
+                        <b:inputTextarea id="instructions" value="#{recipebean.tmp.instructions}" required="true"
+                                             placeholder="Begin by chopping the tomatoes..." />
+                        <b:commandButton onclick="testing()" action="#{recipebean.add()}" value="Confirm" />
+                    </b:form>  
+                </b:row>
+                
+                <b:row>
+                    <b:messages/>
+                </b:row>
+
+                <b:form>    
+
+                     <h4>Ingredients:</h4>
+                            <b:inputText value="#{ribean.tmp.quantity}" type="number" span="3" placeholder="1"/>
+                            <b:selectOneMenu span='8' value="#{ribean.tmp.ingredient.name}">
+                                <f:selectItems value="#{ingredientbean.findAllArray()}" var="i"
+                                               itemLabel="#{i.name}" itemValue="#{i.name}" actionListener="#{ribean.add()}"
+                                               />
+                            </b:selectOneMenu>
+                </b:form>
+
+            </b:column> 
+
+            <!--<b:column span="6" >
+                <b:form>
+
+                    <b:formGroup>
+                        <h4>Ingredients:</h4>
+                        <b:formGroup>
+                            <b:inputText id="ing1q" binding="#{ing1q}" type="number" span="2" placeholder="1"/>
+                            <b:inputText id="ing1" value="#{ingredientbean.tmp.name}" binding="#{ing1}" span="6" placeholder="Tomatoes"  />
+                            <b:commandButton id="ing1b" actionListener="#{ingredientbean.add()}" value="Add ingredient" />
+                        </b:formGroup>
+                        <b:row>
+                            <b:inputText id="ing2q" type="number" span="2" />
+                            <b:inputText id="ing2" value="#{ingredientbean.tmp.name}" binding="#{ing2}" span="6" />
+                            <b:commandButton id="ing2b" actionListener="#{ingredientbean.add()}" value="Add ingredient" />
+                        </b:row>
+                        <b:row>
+                            <b:inputText id="ing3q" type="number" span="2" />
+                            <b:inputText id="ing3" value="#{ingredientbean.tmp.name}" binding="#{ing3}" span="6" />
+                            <b:commandButton id="ing3b" actionListener="#{ingredientbean.add()}" value="Add ingredient" />
+                        </b:row>
+
+                    </b:formGroup>
+                </b:form>
+            </b:column>-->
+            
+        </b:row>
+
+
+
+
+            <!--<b:form id="top">
+                <b:formGroup>
+                    <h4>Recipe name:</h4> 
+                    <b:inputText value="{recipebean.tmp.name}" id="name" type="text" name="recipename" placeholder="Tomato soup"/> 
+                </b:formGroup>
+
+            </b:form>
+            <b:form>
+            <h4>Ingredients:</h4>
+                <b:inputText  span="2" type="text" placeholder="10" name="quantity"/>
+                <b:selectOneMenu span='6' value="{ingredientbean.tmp.name}">
+                    <f:selectItems value="{ingredientbean.findAllArray()}" var="i"
+                                   itemLabel="{i.name}" itemValue="{i.name}" />
+                </b:selectOneMenu>
+                <b:button span="4" value="Add ingredient" id="ingredient-button"></b:button> <br/>
+            </b:form>
+
+            <br/>
+            <br/>
+
+            <b:form id="newingform">
+                <b:button  id="newingb" style='float:left' value="Create new ingredient:" ></b:button>
+                <b:inputText id="newingtext" value="{ingredientbean.tmp.name}" style="display:none" span='6' type='text' placeholder="Ingredient name"  />
+                <b:commandButton id="mking" actionListener="{ingredientbean.add()}"  style="display:none" span='2'  value="Go" ></b:commandButton>
+            </b:form>
+
+            <br/>
+            <br/>   
+
+
+            <b:form horizontal="true" id="if">
+                <b:formGroup id="ing0">
+                    <b:inputText span="3" type="text" placeholder="10" name="quantity"/>
+                    <b:inputText span="9" type="text" placeholder="Tomato" name="ingredient"/>
+                </b:formGroup>
+            </b:form>
+            <b:button span="13" value="Add ingredient" id="ingredient-button"></b:button>
+            <h4>Instructions:</h4>
+            <b:form id="inst">
+                <b:formGroup>
+                    <b:inputTextarea value="{recipebean.tmp.instructions}" id="instructions" placeholder="Begin by chopping the tomatoes..." ></b:inputTextarea>
+                </b:formGroup>
+            </b:form>
+
+            <b:button id="savebutton" size="lg" value="Save" style="float: right"> </b:button>
+            -->
+        
+            
+           
+        
+        
+
+            <script>
+                //<![CDATA[
+                window.addEventListener("DOMContentLoaded", function() {
+                    //document.getElementById("form:ing1b").onclick = function(){enable(2)}
+
+
+                }, false);
+
+
+                function enable(n){
+                        console.log("enabling " + n)
+                        document.getElementById("input_form:ing" + n + "q").disabled="false"
+                        console.log(document.getElementById("input_form:ing" + n + "q"))
+                        document.getElementById("input_form:ing" + n).disabled="false"
+                        document.getElementById("form:ing" + n + "b").disabled="false"
+                        document.getElementById("form:ing" + n + "b").onclick=function(){enable(n+1)}
+                    }
+                //]]>
+
+            </script> 
+            
+            <script>
+                
+                
+                
+                
+                /*function clickCreator() {
+                    document.getElementById("recipe:creator").click()
+                    console.log({recipebean.tmp});
+                    testing();
+                    {recipebean.setCreator(document.getElementById("test").value)};
+                }*/
+                
+                function testing () {
+                    document.getElementById("input_recipe:test2").value = document.getElementById("input_recipe:test").value;
+                }
+                
+            </script>
+        
+    </ui:define>
+        
+</ui:composition>
