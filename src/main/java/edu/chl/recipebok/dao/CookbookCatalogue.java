@@ -22,7 +22,7 @@ import edu.chl.recipebok.core.UserPerson;
 
 
 @Stateless
-public class CookbookCatalogue extends AbstractQuery<Cookbook, Long> {
+public class CookbookCatalogue extends AbstractQuery<Cookbook, String> {
 
     @PersistenceContext(unitName = "recipebok_pu")
     private EntityManager em;
