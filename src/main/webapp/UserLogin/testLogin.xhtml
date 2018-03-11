@@ -8,7 +8,7 @@ and open the template in the editor.
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -40,14 +40,14 @@ and open the template in the editor.
         </div>
         
         <div id="register_div" class="registered-div " style=" display: none">
-
                 <h3>Create Account</h3>
-                <input id="name_field_register" type="name"  placeholder="Name..." value="#{userbean.tmp.username}"/>
-                <input id="email_field_register" type="email"  placeholder="Email..." value="#{userbean.tmp.email}"/>
-                <input type="password" placeholder="Password..." id="password_field_register" />
-                <button value="Register" onclick="register()" />
-
-            <!--<button onclick="register()" >Register</button>-->
+                <b:form id="niceform" class="niceform">
+                    <b:inputText id="name_field_register" type="name"  placeholder="Name..." value="#{userbean.tmp.username}"/>
+                    <b:inputText id="email_field_register" type="email"  placeholder="Email..." value="#{userbean.tmp.email}"/>
+                    <b:inputText type="password" placeholder="Password..." id="password_field_register" />
+                    <h:commandButton id="nicebutton" value="Register" onclick="register();return false;" type="submit"/>
+                    <h:commandButton id="hdnBtn" onclick="#{userbean.add()}" action="#{userbean.add()}" style="display: none;" />
+                </b:form>
             <p onclick="goToLogin()">Back to login</p>
         </div>
 
@@ -120,13 +120,16 @@ and open the template in the editor.
             }
             
              function goToLogin(){
-                 
-                 
-                
                 document.getElementById("user_div").style.display = "none";
                 document.getElementById("login_div").style.display = "block";
                 document.getElementById("register_div").style.display = "none";
                 document.getElementById("user_div_button").style.display = "none";
+            }
+            
+            function getCurrentUser() {
+                var user = firebase.auth().currentUser;
+                console.log(user.email);
+                return user.email;
             }
             
             function login(){
@@ -143,12 +146,16 @@ and open the template in the editor.
 
                     // ...
                 });
+                
+                
 
             }
 
             function register() {
-              var email = document.getElementById("email_field_register").value;
-              var password = document.getElementById("password_field_register").value;
+
+              var email = document.getElementById("input_niceform:email_field_register").value;
+              var password = document.getElementById("input_niceform:password_field_register").value;
+   
               if (!email || !password) {
                 return console.log('email and password required');
               }
@@ -161,7 +168,8 @@ and open the template in the editor.
                   }
                 });
                 
-                #{userbean.add()};
+                document.getElementById("niceform:hdnBtn").click();
+                
 
             };
         
