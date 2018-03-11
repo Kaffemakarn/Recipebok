@@ -10,6 +10,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>BootsFaces Basic Page</title>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBqpKfLJRB4qlk5jWNYN3YgIaa8obYWjMY",
+                authDomain: "recipebok.firebaseapp.com",
+                databaseURL: "https://recipebok.firebaseio.com",
+                projectId: "recipebok",
+                storageBucket: "recipebok.appspot.com",
+                messagingSenderId: "287255300496",
+                clientId : "287255300496-iktt97r9vie0imuvq3a31n3gh7bmmhha.apps.googleusercontent.com",
+
+                scopes: [
+                       "email",
+                       "profile"
+              ]
+            };
+            firebase.initializeApp(config);
+
+        </script>
+        <script>
+            
+            function logout(){
+                firebase.auth().signOut();
+                console.log("Trying to log out");
+                window.location.href = "#{request.contextPath}/";
+            }
+        </script>
         
     </h:head>
     <h:body>
@@ -18,16 +46,36 @@
         
             <b:navBar brand="Recipebook" brandHref="${root}/index.xhtml" fixed="top" inverse="true">
                 <b:navbarLinks>
-                    <b:navLink value="Home" href="${root}/index.xhtml"></b:navLink>
-                    <b:navLink value="Dont Click Me" href="${root}/recipe/addRecipeForm.xhtml"></b:navLink>
-                    <b:navLink value="Profile" href="${root}/user/profile.xhtml"></b:navLink>
-                    <b:navLink value="Log out" onclick=""></b:navLink>
-
+                    <b:navLink id="indexNav" value="Home"></b:navLink>
+                    <b:navLink id="addRecipeNav" value="Dont Click Me"></b:navLink>
+                    <b:navLink id="profileNav" value="Profile"></b:navLink>
                 </b:navbarLinks>
             </b:navBar>
 
         <b:container>
             <ui:insert name="content"/>
+            <button id="user_div_button" onclick="logout()">Logout</button>
         </b:container>
+        <script>
+            firebase.auth().onAuthStateChanged(function(user) {
+                
+                var user = firebase.auth().currentUser;
+                var user_email = user.email.toString();
+                
+                document.getElementById("indexNav").onclick = function () {
+                    location.href = "${root}/index.xhtml?email=" + user_email;
+                };
+                
+                document.getElementById("addRecipeNav").onclick = function () {
+                    location.href = "${root}/recipe/addRecipeForm.xhtml?email=" + user_email;
+                };
+                
+                document.getElementById("profileNav").onclick = function () {
+                    location.href = "${root}/user/profile.xhtml?email=" + user_email;
+                };
+                
+            });
+           
+        </script>
     </h:body>
 </html>
