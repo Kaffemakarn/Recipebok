@@ -68,7 +68,7 @@ p {
     font-size: 15px;
 }
 
-li {
+li, .addToDatabaseButton {
     display: none;
 }
 

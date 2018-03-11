@@ -96,7 +96,7 @@
             <groupId>org.ocpsoft.rewrite</groupId>
             <artifactId>rewrite-config-prettyfaces</artifactId>
             <version>3.4.1.Final</version>
-        </dependency> 
+        </dependency>
     </dependencies>
 
     <build>
