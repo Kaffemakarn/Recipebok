@@ -26,7 +26,7 @@
             <b:row>
                 <b:column span="12">
                     <h2 style="margin-bottom: 0;text-align: center;margin-bottom: 0;"> Profile</h2>
-                    <h2>#{userbean.tmp.email}</h2>
+                    <!--<h2>#{userbean.tmp.email}</h2>-->
                 </b:column>
             </b:row>
             <b:row>
@@ -57,9 +57,9 @@
          <b:row>
             <b:form id="createCookbook">
                <!-- <b:label value="Add Cookbook"  span="2"  />-->
-                <b:inputText id="id" value="#{cookbookbean.tmp.id}" size="5" span="1" placeholder="Id" required="true" />
-                <b:inputText id="firstName" value="#{cookbookbean.tmp.name}" size="10" span="2" placeholder="Cookbook name" required="true" />
-                <b:commandButton value='Create Cookbook'  look="primary" span="2"
+                <!--<b:inputText id="id" value="#{cookbookbean.tmp.id}" size="5" span="1" placeholder="Id" required="true" />-->
+                <b:inputText id="cookbookName" value="#{cookbookbean.tmp.name}" size="10" span="2" placeholder="Cookbook name" required="true" />
+                <b:commandButton value='Create'  look="primary" span="1"
                                  actionListener="#{cookbookbean.add()}"/>
                <!-- <b:commandButton value="Delete"  look="warning" span="1" size="xs"
                                  action="#{cookbookbean.delete()}" immediate="true"/>-->
