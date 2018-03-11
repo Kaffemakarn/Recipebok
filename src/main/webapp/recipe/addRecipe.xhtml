@@ -34,10 +34,11 @@
                         <b:inputText id="test" value="#{userbean.tmp.email}" style="display:none;" />
                         <b:inputText id="test2" value="#{recipebean.useremail}" style="display:none;"/>
                         <b:inputText id="name" value="#{recipebean.tmp.name}" required="true"
-                                         placeholder="Tomato soup" />
+                                         placeholder="Recipe name" />
                         <b:inputTextarea id="instructions" value="#{recipebean.tmp.instructions}" required="true"
-                                             placeholder="Begin by chopping the tomatoes..." />
-                        <b:commandButton onclick="testing()" action="#{recipebean.add()}" value="Confirm" />
+                                             placeholder="Put in some instructions..." />
+                        <p>Confirm Name and Instructions before adding ingredients: </p>
+                        <b:commandButton onclick="testing()"  action="#{recipebean.add()}" value="Confirm Name and Instructions" />
                     </b:form>  
                 </b:row>
                 
@@ -45,18 +46,55 @@
                     <b:messages/>
                 </b:row>
 
-                <b:form>    
+                <b:form id="ingrForm">    
 
-                     <h4>Ingredients:</h4>
-                            <b:inputText value="#{ribean.tmp.quantity}" type="number" span="3" placeholder="1"/>
-                            <b:selectOneMenu span='8' value="#{ribean.tmp.ingredient.name}">
-                                <f:selectItems value="#{ingredientbean.findAllArray()}" var="i"
-                                               itemLabel="#{i.name}" itemValue="#{i.name}" actionListener="#{ribean.add()}"
-                                               />
-                            </b:selectOneMenu>
+                    <h4>Ingredients:</h4>
+                    <b:formGroup id="ing0">
+                        <p>Add one ingredient at a time, and add more by using the form several times: </p>
+                        <b:inputText id="ing0q" value="#{ribean.tmp.quantity}" type="number" span="3" placeholder="1"/>
+                        <b:selectOneMenu id="ing0i" span='5' value="#{ribean.ingredientname}">
+                            <f:selectItems value="#{ingredientbean.findAllArray()}" var="i"
+                                            itemLabel="#{i.name}" itemValue="#{i.name}" />
+                        </b:selectOneMenu>
+                        <b:inputText id="ritest" value="#{recipebean.tmp.id}" style="display:none;" />
+                        <b:inputText id="ritest2" value="#{ribean.recipeid}" style="display:none;"/>
+                        <b:commandButton id="ing0b" onclick="fixRecIngr()" action="#{ribean.add()}" value="Add ingredient"/>
+                        <br/>
+                    </b:formGroup>
+                    <b:commandButton id="lastbtn" value="Finish Recipe"
+                                     action="#{recipebean.cancel()}"/>
+                    <br/>
+                    <br/>
+                            
                 </b:form>
 
             </b:column> 
+            
+            
+            <!--<b:column span="5">
+                
+                <b:dataTable 
+                        id="recipeIngredientsTable" 
+                        var="ri" 
+                        value="#{recipebean.findRecipeIngredients(recipebean.tmp)}" 
+                        striped="true"
+                        paginated="false"
+                        row-highlight="false"
+                        searching="false"
+                        >
+
+                        <b:dataTableColumn label="" orderable="false" value= "#{ri.quantity}" />
+
+                        <b:dataTableColumn label=""  orderable="false" value= "#{ri.ingredient.name}" />
+
+                    </b:dataTable>
+                
+            </b:column>-->
+            
+            
+            
+            
+            
 
             <!--<b:column span="6" >
                 <b:form>
@@ -172,6 +210,19 @@
                     testing();
                     {recipebean.setCreator(document.getElementById("test").value)};
                 }*/
+                
+                function newIng(n){
+                    
+                    var lastbutton = document.getElementById("ingrForm:lastbtn")
+                    var x = document.getElementById("ingrForm:ing"+n).cloneNode(true)
+                    document.getElementById("ingrForm").insertBefore(x, lastbutton)
+                    
+                }
+                
+                function fixRecIngr() {
+                    document.getElementById("input_ingrForm:ritest2").value = document.getElementById("input_ingrForm:ritest").value;
+                    console.log(document.getElementById("input_ingrForm:ritest2").value);
+                }
                 
                 function testing () {
                     document.getElementById("input_recipe:test2").value = document.getElementById("input_recipe:test").value;

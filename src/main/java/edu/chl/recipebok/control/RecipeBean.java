@@ -59,6 +59,10 @@ public class RecipeBean implements Serializable {
     @Getter
     @Setter
     private String useremail = "";
+    
+    @Getter
+    @Setter
+    private boolean showingredients = false;
 
     @Getter
     @Setter
@@ -108,7 +112,7 @@ public class RecipeBean implements Serializable {
             String message = ExceptionHandler.getMessage(sql);
             FacesMessages.info("Fail " + message);
         }
-        tmp = new Recipe();
+        //tmp = new Recipe();
 
     }
 
@@ -153,6 +157,13 @@ public class RecipeBean implements Serializable {
         return rcat.findByIngredient(ingredient);
     }
     
+    public void toggle(){
+        showingredients = !showingredients;
+    }
+    
+    public boolean showingredients(){
+        return this.showingredients;
+    }    
     
     // Find Recipes that use all the specified ingredients
     public List<Recipe> findByIngredients(List<Ingredient> ingredients) {

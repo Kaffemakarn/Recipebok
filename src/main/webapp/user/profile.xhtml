@@ -8,20 +8,25 @@
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <script src="https://smartlock.google.com/client"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <h:outputStylesheet library="css" name="default.css"  />
     <h:outputStylesheet library="css" name="profile.css"  />
+    <h:outputStylesheet library="css" name="addCookbookStyle.css"/>
     
    
     <ui:define name="content"> 
-        <!--<f:metadata>
-            <f:viewParam name="id" value="#{cookbookbean.tmp.id}"/>
-            <f:viewAction action="#{cookbookbean.setCookbook()}"/>
-        </f:metadata> -->
+        <f:metadata>
+            <f:viewParam name="email" value="#{userbean.tmp.email}"/>
+            <f:viewAction action="#{userbean.setUser()}"/>
+        </f:metadata>
         
         <b:container >
             <b:row>
                 <b:column span="12">
                     <h2 style="margin-bottom: 0;text-align: center;margin-bottom: 0;"> Profile</h2>
+                    <!--<h2>#{userbean.tmp.email}</h2>-->
                 </b:column>
             </b:row>
             <b:row>
@@ -48,6 +53,18 @@
                 </b:column>                
             </b:row>
         </b:container>
+               
+         <b:row>
+            <b:form id="createCookbook">
+               <!-- <b:label value="Add Cookbook"  span="2"  />-->
+                <!--<b:inputText id="id" value="#{cookbookbean.tmp.id}" size="5" span="1" placeholder="Id" required="true" />-->
+                <b:inputText id="cookbookName" value="#{cookbookbean.tmp.name}" size="10" span="2" placeholder="Cookbook name" required="true" />
+                <b:commandButton value='Create'  look="primary" span="1"
+                                 actionListener="#{cookbookbean.add()}"/>
+               <!-- <b:commandButton value="Delete"  look="warning" span="1" size="xs"
+                                 action="#{cookbookbean.delete()}" immediate="true"/>-->
+            </b:form>
+        </b:row>
         
         
         <b:container style="background-color: #EEEEEE;">
@@ -55,7 +72,7 @@
                 <b:dataTable 
                     id="cookbookTable" 
                     var="c"
-                    value="#{cookbookbean.findAll() }"
+                    value="#{cookbookbean.findByUser(userbean.tmp)}"
                     striped="true"
                     page-length-menu="5,10,20"
                     page-length="5">
@@ -71,9 +88,50 @@
                         <h3>#{c.name}</h3>
                     </b:dataTableColumn>
                     
+                    <b:dataTableColumn label="Delete" style="width:100px;" id="cookbookDeleteTable">
+                        <b:form>
+                             <b:icon name="trash" onclick='#{cookbookbean.delete()}'/> 
+                        </b:form>
+                       
+                    </b:dataTableColumn>
+                    
                 </b:dataTable>
               </b:row>
        </b:container>
+        
+        
+         <b:container style="background-color: #EEEEEE;">
+            <b:row style="margin:10px;">
+                <b:dataTable 
+                    id="recipesTable" 
+                    var="re"
+                    value="#{recipebean.findByUser(userbean.tmp) }"
+                    striped="true"
+                    page-length-menu="5,10,20"
+                    page-length="5">
+                    
+                    <b:dataTableColumn label="Image" style="width:160px;" orderable="false">
+                        <b:thumbnail>
+                            <b:image value="resources/img/recipeboook.png" style="height:150px; width: 65%;"/>
+                            
+                        </b:thumbnail>
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn label="Recipe Title" style="width:500px;" id="recipeTitleTable">
+                        <h3>#{re.name}</h3>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Delete" style="width:100px;" id="cookbookDeleteTable">
+                        <b:form>
+                             <b:icon name="trash" onclick='#{cookbookbean.delete()}'/> 
+                        </b:form>
+                       
+                    </b:dataTableColumn>
+                    
+                </b:dataTable>
+              </b:row>
+       </b:container>
+        
     </ui:define>
     
     <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
