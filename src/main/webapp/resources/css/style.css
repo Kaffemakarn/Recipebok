@@ -39,11 +39,11 @@ input, button {
     -moz-transition: 0.3s;
 }
 
-.main-div input:focus, .registered-div input:focus {
+.main-div input:focus, .registered-div .nicebutton:focus {
     border: 1px solid #777;
 }
 
-.main-div button, .loggedin-div button, .registered-div button  {
+.main-div button, .loggedin-div button, .registered-div button, .registered-div .nicebutton {
     background: #5d8ffc;
     color: #fff;
     border: 1px solid #5d8ffc;
@@ -56,7 +56,7 @@ input, button {
     -moz-transition: 0.3s;
 }
 
-.main-div button:hover, .loggedin-div button:hover, .registered-div button:hover {
+.main-div button:hover, .loggedin-div button:hover, .registered-div button:hover, .registered-div .nicebutton:hover {
     background: #fff;
     color: #5d8ffc;
     border: 1px solid #5d8ffc;

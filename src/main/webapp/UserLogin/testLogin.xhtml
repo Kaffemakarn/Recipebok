@@ -47,7 +47,7 @@ and open the template in the editor.
                     <b:inputText id="name_field_register" type="name"  placeholder="Name..." value="#{userbean.tmp.username}"/>
                     <b:inputText id="email_field_register" type="email"  placeholder="Email..." value="#{userbean.tmp.email}"/>
                     <b:inputText type="password" placeholder="Password..." id="password_field_register" />
-                    <h:commandButton id="nicebutton" value="Register" onclick="register();return false;" type="submit"/>
+                    <h:commandButton class="nicebutton" value="Register" onclick="register();return false;" type="submit"/>
                     <h:commandButton id="hdnBtn" onclick="#{userbean.add()}" action="#{userbean.add()}" style="display: none;" />
                 </b:form>
                 <p onclick="goToLogin()">Back to login</p>
