@@ -9,7 +9,11 @@
     <script src="https://smartlock.google.com/client"></script>
      <h:outputStylesheet library="css" name="default.css"  />
     
-    <ui:define name="content"> 
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="email" value="#{userbean.tmp.email}"/>
+            <f:viewAction action="#{userbean.setUser()}"/>
+        </f:metadata>
 
         <b:container>
             <b:row>
@@ -47,7 +51,7 @@
 
                     <b:dataTableColumn label="Title" style="width:500px;" id="ingredientTable">
                         <h3>#{r.name}</h3>
-                        <!--<p>Ingredients: #{ingredientbean.findByRecipe(r)}</p>-->
+                        <p>Ingredients: #{ingredientbean.findByRecipe(r)}</p>
                     </b:dataTableColumn>
                     
                     <b:dataTableColumn label="Date">
@@ -90,8 +94,8 @@
                 </b:form> 
             </b:row>
         </b:container>
-        <ui:insert name="logout_button"/>
         
     </ui:define>
     
 </ui:composition>
+

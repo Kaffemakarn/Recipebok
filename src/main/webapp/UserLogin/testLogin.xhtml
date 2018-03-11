@@ -33,10 +33,12 @@ and open the template in the editor.
             <button onclick="login()" >Login to Account</button>
             <p onclick="goToRegister()" style='margin-bottom:0;'>Don't have an account?</p><p onclick="goToRegister()" style='margin-top:0;'> Register here</p>
         </div>
-
+        
         <div id="user_div">
-            <ui:include src="../index.xhtml"/>
+            <ui:include src="../index.xhtml" />
             <button id="user_div_button" onclick="logout()">Logout</button>
+            <!--<h:inputHidden id="current_user" value="#{userbean.tmp.email}"/>-->
+            <button style="display:none;" id="hdnLnk" />
         </div>
         
         <div id="register_div" class="registered-div " style=" display: none">
@@ -83,15 +85,28 @@ and open the template in the editor.
                 
                 if (user) {
                     // User is signed in.
+                    var user = firebase.auth().currentUser;
+                    var user_email = user.email.toString();
+                    
+                    document.getElementById("hdnLnk").onclick = function () {
+                        location.href = "#{request.contextPath}/index.xhtml?email=" + user_email;
+                    };
+                    
+                    //document.getElementById("hdnLnk").href = "#{request.contextPath}/index.xhtml?email=" + user_email;
+                    //document.getElementById("hdnLnk").value = "#{request.contextPath}/index.xhtml?email=hej" + user_email;
+                    //console.log("Plz work " + document.getElementById("hdnLnk").href);
+                    
+                    //document.getElementById('current_user').value = user.email;
+                    //console.log("Current user's email=" + user.email);
+                    //console.log("Set user: " + document.getElementById('current_user').value);
 
                     document.getElementById("user_div").style.display = "block";
                     document.getElementById("user_div_button").style.display = "block";
                     document.getElementById("login_div").style.display = "none";
                     document.getElementById("register_div").style.display = "none";
                     
-                    //window.location.replace("../Recipebok/index.xhtml");
-
-                    var user = firebase.auth().currentUser;
+                    document.getElementById("hdnLnk").click();
+                    
                     
                     //if(user != null){
                         //var email_id = user.email;

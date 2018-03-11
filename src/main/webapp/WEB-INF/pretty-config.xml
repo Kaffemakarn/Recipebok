@@ -11,6 +11,11 @@
     <url-mapping id="view-recipe"> 
         <pattern value="/recipe/#{id}" /> 
         <view-id value="/recipe/recipe.xhtml?id=#{id}" />
-    </url-mapping> 
+    </url-mapping>
+    <!-- 
+    <url-mapping id="index"> 
+        <pattern value="/index/#{email}" /> 
+        <view-id value="/index.xhtml?email=#{email}" />
+    </url-mapping>-->
     
 </pretty-config>    
