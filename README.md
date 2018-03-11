@@ -27,7 +27,7 @@ The group has together developed the application in only 4 days and this is the 
 ### Git inspector
 Please note that because we have had so many technical issues (as out superviser Daniel can attest to), the git history does not accurately represent who wrote what code. We have had to migrate the project several times between different repositories, different branches etc. and we have also done a lot of pair programming.
 
-We in group 5 will vouch for each other that everyone have done the same amount of work.
+We in group 5 will vouch for each other that everyone has done the same amount of work.
 
 ## How to run
 
