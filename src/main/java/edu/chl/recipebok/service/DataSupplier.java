@@ -38,7 +38,7 @@ public class DataSupplier {
 
     static Recipe chicken = new Recipe("2", "Marinated Chicken", inst2, t, "1066-06-06");
     
-    static Cookbook cookbook = new Cookbook(new Long(0001), s, "Beautiful Food");
+    static Cookbook cookbook = new Cookbook("0001", s, "Beautiful Food");
     
     //user recipe value comment
     static Rating rating1 = new Rating(s, tomatosoup, 4, "Great");

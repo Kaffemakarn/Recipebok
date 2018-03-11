@@ -13,7 +13,7 @@ public class Cookbook implements Serializable {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @Getter
     @Setter
@@ -27,7 +27,7 @@ public class Cookbook implements Serializable {
     private String name;
 
 
-    public Cookbook(Long id, UserPerson user, String name)
+    public Cookbook(String id, UserPerson user, String name)
     {
         this.id = id;
         this.user = user;
@@ -37,8 +37,7 @@ public class Cookbook implements Serializable {
 
     @Override
     public String toString(){
-        return "Cookbook{" + /* "id = " + id +
-                ", */"creator = " + user.getUsername() +
+        return "Cookbook{ " + "id=" + id + ", " + "creator = " + user.getUsername() +
                 ", Cookbook Name = " + name + "}";
     }
 
