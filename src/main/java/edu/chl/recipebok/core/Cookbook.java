@@ -24,7 +24,6 @@ public class Cookbook implements Serializable {
 
     @Getter
     @Setter
-    //@Column(nullable=false)
     private String name;
 
 

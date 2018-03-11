@@ -1,6 +1,5 @@
 package edu.chl.recipebok.service;
 
-import edu.chl.recipebok.core.Category;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.CookbookRecipe;
 import edu.chl.recipebok.core.Ingredient;

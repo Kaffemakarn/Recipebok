@@ -15,8 +15,7 @@ import java.io.Serializable;
  */
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Entity
-//@Table(name="recipe" ) 
+@Entity 
 @Table(uniqueConstraints= { @UniqueConstraint(columnNames = {"creator", "name"})})
 public class Recipe implements Serializable {
 
@@ -28,7 +27,6 @@ public class Recipe implements Serializable {
 
     @Getter
     @Setter
-    //@Column(nullable=false)
     private String name;
     
     @Getter
@@ -39,15 +37,12 @@ public class Recipe implements Serializable {
     @Setter
     @ManyToOne
     @JoinColumn(name = "creator")
-    //@Column(nullable=false)
     private UserPerson creator;
 
     @Getter
     @Setter
-    //@Column(nullable=false)
     private String creationTime;
 
-    // TODO add image
 
     public Recipe(String id, String name, String instructions, UserPerson creator, String creationTime){
         this.id = id;

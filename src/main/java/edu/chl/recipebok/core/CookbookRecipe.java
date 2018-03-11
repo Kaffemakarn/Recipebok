@@ -11,7 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-//@IdClass(CookbookRecipePK.class)
 public class CookbookRecipe implements Serializable {
 
     @Getter

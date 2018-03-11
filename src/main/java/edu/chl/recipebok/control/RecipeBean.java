@@ -5,7 +5,6 @@
  */
 package edu.chl.recipebok.control;
 
-import edu.chl.recipebok.core.Category;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Ingredient;
 import edu.chl.recipebok.core.Recipe;

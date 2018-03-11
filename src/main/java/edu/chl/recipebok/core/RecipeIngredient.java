@@ -11,7 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-//@IdClass(RecipeIngredientPK.class)
 public class RecipeIngredient implements Serializable {
     
     
@@ -20,13 +19,11 @@ public class RecipeIngredient implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    //@Id
     @Getter
     @Setter
     @ManyToOne
     private Recipe recipe;
 
-    //@Id
     @Getter
     @Setter
     @ManyToOne
