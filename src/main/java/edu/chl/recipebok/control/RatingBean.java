@@ -25,7 +25,7 @@ import net.bootsfaces.component.form.Form;
  * @author Sabrina
  */
 //@Named("ratingbean")
-//@RequestScoped
+@RequestScoped
 //@SessionScoped
 public class RatingBean implements Serializable {
 

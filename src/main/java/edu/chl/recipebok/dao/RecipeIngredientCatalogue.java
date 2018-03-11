@@ -22,7 +22,7 @@ import javax.persistence.PersistenceContext;
  * @author Mickaela
  */
 @Stateless
-public class RecipeIngredientCatalogue extends AbstractQuery<RecipeIngredient, String> {
+public class RecipeIngredientCatalogue extends AbstractQuery<RecipeIngredient, Long> {
     
     @PersistenceContext(unitName = "recipebok_pu")
     private EntityManager em;
