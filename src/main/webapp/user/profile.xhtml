@@ -58,9 +58,12 @@
             <b:form id="createCookbook">
                <!-- <b:label value="Add Cookbook"  span="2"  />-->
                 <!--<b:inputText id="id" value="#{cookbookbean.tmp.id}" size="5" span="1" placeholder="Id" required="true" />-->
+                <b:inputText id="test" value="#{userbean.tmp.email}" style="display:none;" />
+                <b:inputText id="test2" value="#{cookbookbean.userEmail}" style="display:none;"/>
                 <b:inputText id="cookbookName" value="#{cookbookbean.tmp.name}" size="10" span="2" placeholder="Cookbook name" required="true" />
                 <b:commandButton value='Create'  look="primary" span="1"
-                                 actionListener="#{cookbookbean.add()}"/>
+                                 onclick="testing()"
+                                 action="#{cookbookbean.add()}"/>
                <!-- <b:commandButton value="Delete"  look="warning" span="1" size="xs"
                                  action="#{cookbookbean.delete()}" immediate="true"/>-->
             </b:form>
@@ -132,6 +135,13 @@
               </b:row>
        </b:container>
         
+        <script>
+        function testing () {
+                    document.getElementById("input_createCookbook:test2").value = document.getElementById("input_createCookbook:test").value;
+                    console.log(document.getElementById("input_createCookbook:test2").value)
+                }    
+        </script>
+            
     </ui:define>
     
     <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

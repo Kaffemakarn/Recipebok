@@ -8,6 +8,7 @@ import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.Recipe;
 import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.CookbookCatalogue;
+import edu.chl.recipebok.dao.UserCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
@@ -36,12 +37,19 @@ public class CookbookBean implements Serializable {
     private static final Logger LOG = Logger.getLogger(CookbookBean.class.getName());
     @EJB
     private CookbookCatalogue cbCat;
+    
+    @EJB
+    private UserCatalogue userCat;
+    
     @Getter
     @Setter
     private Cookbook tmp = new Cookbook();
     private final int start = 0;
     private int nRecords = 50;
 
+    @Getter
+    @Setter
+    private String userEmail;
     @Getter
     @Setter
     private Form form;
@@ -79,9 +87,10 @@ public class CookbookBean implements Serializable {
     }
      
     public void add() {
-        //tmp.setAddress(DataSupplier.getRandomAddress());
+        tmp.setUser(userCat.find(userEmail) );
+        
         try {
-            //cbCat.create(tmp);
+            cbCat.create(tmp);
             FacesMessages.info("Success");
         } catch (RuntimeException sql) {
             String message = ExceptionHandler.getMessage(sql);
