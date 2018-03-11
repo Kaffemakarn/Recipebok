@@ -8,7 +8,7 @@ Members of this group are:
 
 **August Lennar** - Git: Lentx
 
-**Sabrina Samuelsson** - Git: SabbePadde
+**Sabrina Samuelsson** - Git: SabbePabbe
 
 **Mickaela Södergren** - Git: Kaffemakarn
 
@@ -30,6 +30,8 @@ Please note that because we have had so many technical issues (as out superviser
 We in group 5 will vouch for each other that everyone have done the same amount of work.
 
 ## How to run
+
+The application is at the branch maybe-database, so checkout that branch. 
 
 To run this application, please use **Netbeans**.
 
