@@ -54,9 +54,9 @@ public class IngredientBean implements Serializable{
         for( Entry<String, String> e : map.entrySet()){
         LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
         }*/
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("ingredientTable");
+       //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("ingredientTable");
        
-       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+       //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
       
        // ------------ Navigation -------------------
@@ -73,9 +73,18 @@ public class IngredientBean implements Serializable{
     public List<Ingredient> findAll() {
         return icat.findAll();
     }
+    
+    public Ingredient[] findAllArray(){
+        List<Ingredient> all = this.findAll();
+        Ingredient[] ings = new Ingredient[all.size()];
+        for(int i = 0; i < ings.length; i++){
+            ings[i] = all.get(i);
+        }
+        return ings;
+    }
    
-     public void add() {
-         
+    public void add() {
+        System.out.println("Adding ingredient");
         try {
             icat.create(tmp);
             FacesMessages.info("Success");

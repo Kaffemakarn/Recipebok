@@ -47,7 +47,7 @@
             <b:navBar brand="Recipebook" brandHref="${root}/index.xhtml" fixed="top" inverse="true">
                 <b:navbarLinks>
                     <b:navLink id="indexNav" value="Home"></b:navLink>
-                    <b:navLink id="addRecipeNav" value="Dont Click Me"></b:navLink>
+                    <b:navLink id="addRecipeNav" value="Add Recipe"></b:navLink>
                     <b:navLink id="profileNav" value="My Cookbooks"></b:navLink>
                 </b:navbarLinks>
             </b:navBar>
@@ -67,7 +67,7 @@
                 };
                 
                 document.getElementById("addRecipeNav").onclick = function () {
-                    location.href = "${root}/recipe/addRecipeForm.xhtml?email=" + user_email;
+                    location.href = "${root}/recipe/addRecipe.xhtml?email=" + user_email;
                 };
                 
                 document.getElementById("profileNav").onclick = function () {

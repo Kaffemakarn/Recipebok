@@ -13,16 +13,20 @@ import edu.chl.recipebok.core.RecipeIngredient;
 import edu.chl.recipebok.core.UserPerson;
 import edu.chl.recipebok.dao.RecipeCatalogue;
 import edu.chl.recipebok.dao.RecipeIngredientCatalogue;
+import edu.chl.recipebok.dao.UserCatalogue;
 import edu.chl.recipebok.util.ExceptionHandler;
 import java.io.Serializable;
 import static java.lang.System.out;
 import java.text.Normalizer.Form;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+//import javax.faces.bean.SessionScoped;
+//import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -35,8 +39,8 @@ import net.bootsfaces.utils.FacesMessages;
  * @author Mickaela
  */
 @Named("recipebean")
-//@RequestScoped
-@SessionScoped
+@RequestScoped
+//@SessionScoped
 public class RecipeBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(RecipeBean.class.getName());
@@ -44,11 +48,17 @@ public class RecipeBean implements Serializable {
     private RecipeCatalogue rcat;
     @EJB
     private RecipeIngredientCatalogue ricat;
+    @EJB
+    private UserCatalogue ucat;
     @Getter
     @Setter
     private Recipe tmp = new Recipe();
     private final int start = 0;
     private int nRecords = 50;
+    
+    @Getter
+    @Setter
+    private String useremail = "";
 
     @Getter
     @Setter
@@ -60,9 +70,12 @@ public class RecipeBean implements Serializable {
     }
 
     public void page() {
-       DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
+        //FacesContext.
+        //DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeTable");
        
-       LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
+        //Container c = (Container) FacesContext.getCurrentInstance().getViewRoot().findComponent("recipeview");
+       
+        //LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );
     }
     // ------------ Navigation -------------------
 
@@ -80,7 +93,13 @@ public class RecipeBean implements Serializable {
     }
 
     public void add() {
-        //tmp.setAddress(DataSupplier.getRandomAddress());
+        
+        tmp.setCreationTime(new Date().toString());
+        
+        this.setCreatorByEmail();
+        
+        //tmp.setId(Integer.toString(120));
+        //tmp.setCreator(ucat.find("Sabrina@mail"));
         
         try {
             rcat.create(tmp);
@@ -104,6 +123,10 @@ public class RecipeBean implements Serializable {
     }
     
     
+    public void setCreatorByEmail(){
+        tmp.setCreator(ucat.findByUserMail(useremail));
+    }
+    
     // Find recipes by user
     public List<Recipe> findByUser(UserPerson user) {
         return rcat.findByUser(user);
@@ -124,18 +147,6 @@ public class RecipeBean implements Serializable {
         return rcat.findByCookbook(cookbookId);
     }
 
-/*
-    // Find all Recipes that belong to a specified category
-    public List<Recipe> findByCategory(Category category) {
-        return rcat.findByCategory(category);
-    }
-    
-    
-    // Find Recipes that belong to all the specified categories
-    public List<Recipe> findByCategories(List<Category> categories) {
-        return rcat.findByCategories(categories);
-    }
-    */
     
     // Find Recipes that use the specified ingredient. 
     public List<Recipe> findByIngredient(Ingredient ingredient) {
@@ -151,7 +162,8 @@ public class RecipeBean implements Serializable {
     
     
     public List<RecipeIngredient> findRecipeIngredients(Recipe recipe){
-        return ricat.findByRecipe(recipe);
+        return null;
+        //return ricat.findByRecipe(recipe);
     }
     
 }

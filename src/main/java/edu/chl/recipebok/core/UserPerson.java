@@ -22,7 +22,7 @@ public class UserPerson implements Serializable {
     @Getter
     @Setter
     @Id
-    private String email;
+    private String email = "default@email";
     
     @Getter
     @Setter

@@ -93,11 +93,11 @@ public class UserBean implements Serializable {
     }
  
     // find user by username
-     public UserPerson findByUsername(String name) {
+    public UserPerson findByUsername(String name) {
         return ucat.findByUsername(name);
     }
     // find user by user email
-      public UserPerson findByUserMail(String email) {
+    public UserPerson findByUserMail(String email) {
         return ucat.findByUserMail(email);
     }
 }
