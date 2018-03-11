@@ -4,7 +4,9 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:b="http://bootsfaces.net/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"          
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <script src="https://smartlock.google.com/client"></script>
     <h:outputStylesheet library="css" name="default.css"  />
     <h:outputStylesheet library="css" name="profile.css"  />
     
@@ -14,7 +16,7 @@
         <b:container >
             <b:row>
                 <b:column span="12">
-                    <h2 style="margin-bottom: 0;">Profile</h2>
+                    <h2 style="margin-bottom: 0;">My Profile</h2>
                 </b:column>
             </b:row>
             <b:row>
@@ -26,7 +28,28 @@
                 </b:jumbotron>
             </b:row>
         </b:container>
+        
+         <b:dataTable 
+                        id="recipeIngredientsTable" 
+                        var="ri" 
+                        value="#{recipebean.findRecipeIngredients(recipebean.tmp)}" 
+                        striped="true"
+                        paginated="false"
+                        row-highlight="false"
+                        searching="false"
+                        
+                        >
 
+                        <b:dataTableColumn label="" orderable="false" value= "#{ri.quantity}" />
+
+                        <b:dataTableColumn label=""  orderable="false" value= "#{ri.ingredient.name}" />
+
+                        
+
+         </b:dataTable>
+        
+        <!--<img src= "man.png" class="img-rounded" alt="man"></img>-->
+        <!--<img src="url(../resources/img/man.png)" class="img-rounded" ></img>-->
     </ui:define>
     
 </ui:composition>
