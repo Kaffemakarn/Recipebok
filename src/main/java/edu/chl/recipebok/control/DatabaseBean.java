@@ -25,10 +25,7 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import net.bootsfaces.component.commandButton.CommandButton;
 
-/**
- *
- * @author Mickaela
- */
+
 @Named("db")
 @RequestScoped
 public class DatabaseBean {

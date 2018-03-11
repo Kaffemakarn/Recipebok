@@ -61,10 +61,7 @@ public class CookbookBean implements Serializable {
 
 
   public void page() {
-        /*Map<String, String> map = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        for( Entry<String, String> e : map.entrySet()){
-        LOG.log(Level.INFO, "Key " + e.getKey() + " val " + e.getValue() );
-        }*/
+
        DataTable dt = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("cookbookForm:cookbookTable");
        
        LOG.log(Level.INFO, "Test {0}", dt.getJQueryEvents()); //) +  );

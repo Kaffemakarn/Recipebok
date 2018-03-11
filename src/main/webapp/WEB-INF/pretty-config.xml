@@ -3,26 +3,10 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
-                      
-    <!--<url-mapping id="home"> 
-        <pattern value="/" /> 
-        <view-id value="UserLogin/testLogin.xhtml" />
-    </url-mapping>-->
-    
-    <!--<url-mapping id="view-recipe"> 
-        <pattern value="/recipe/#{id}" /> 
-        <view-id value="/recipe/recipe.xhtml?id=#{id}" />
-    </url-mapping>-->
-    
+
     <url-mapping id="home"> 
         <pattern value="/" /> 
-        <view-id value="/UserLogin/testLogin.xhtml" />
+        <view-id value="/login.xhtml" />
     </url-mapping>
-    
-    <!-- 
-    <url-mapping id="index"> 
-        <pattern value="/index/#{email}" /> 
-        <view-id value="/index.xhtml?email=#{email}" />
-    </url-mapping>-->
-    
+
 </pretty-config>    

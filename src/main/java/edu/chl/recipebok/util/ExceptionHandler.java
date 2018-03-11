@@ -7,7 +7,7 @@ package edu.chl.recipebok.util;
 
 /**
  *
- * @author Mickaela
+ * @author hajo
  */
 public class ExceptionHandler {
 
