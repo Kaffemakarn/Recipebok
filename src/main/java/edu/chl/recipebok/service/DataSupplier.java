@@ -4,12 +4,12 @@ import edu.chl.recipebok.core.Category;
 import edu.chl.recipebok.core.Cookbook;
 import edu.chl.recipebok.core.CookbookRecipe;
 import edu.chl.recipebok.core.Ingredient;
-import edu.chl.recipebok.core.Rating;
 import edu.chl.recipebok.core.Recipe;
 //import edu.chl.recipebok.core.RecipeCategory;
 import edu.chl.recipebok.core.RecipeIngredient;
 import edu.chl.recipebok.core.UserPerson;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,24 +29,19 @@ public class DataSupplier {
     static String inst1 = "First, take the tomatoes and chop them coarsely. \n"
                 + "Then, put them in a pot together with the water and all spices.\n"
                 + "Let it boil for 20 minutes and then serve with bread.";
-        
-    static Recipe tomatosoup = new Recipe("1", "Tomatsoppa", inst1, s, "2018-03-02");
+    static Date date1 = new Date();    
+    
+    static Recipe tomatosoup = new Recipe("1", "Tomatsoppa", inst1, s, date1.toGMTString());
 
     static String inst2 = "Defrost the chicken. \n"
             + "Mix the soy sauce with the spices and let the chicken marinate in the sauce. \n"
             + "Then put the chicken in the oven and cook for 30 minutes.";
 
-    static Recipe chicken = new Recipe("2", "Marinated Chicken", inst2, t, "1066-06-06");
+    static Date date2 = new Date();
+    
+    static Recipe chicken = new Recipe("2", "Marinated Chicken", inst2, t, date2.toGMTString());
     
     static Cookbook cookbook = new Cookbook("0001", s, "Beautiful Food");
-    
-    //user recipe value comment
-    static Rating rating1 = new Rating(s, tomatosoup, 4, "Great");
-    static Rating rating2 = new Rating(t, tomatosoup, 1, "Not good");
-    static Rating rating3 = new Rating(t, chicken, 5, "Amazing");
-    
-    
-    
     
     public static List<UserPerson> getUserPersons(){
         
@@ -69,16 +64,7 @@ public class DataSupplier {
         
     }
     
-    public static List<Rating> getRatings(){
-        List<Rating> ratings = new ArrayList<>();
-        
-        ratings.add(rating1);
-        ratings.add(rating2);
-        ratings.add(rating3);
-
-        return ratings;
-    }
-    
+  
     //this creates the ingredient connections for the above recipes
     public static List<RecipeIngredient> getRecipeIngredients(){
         List<RecipeIngredient> i = new ArrayList<>();
@@ -108,6 +94,25 @@ public class DataSupplier {
         i.add(new Ingredient("Spices"));
         i.add(new Ingredient("Water"));
         i.add(new Ingredient("Bread"));
+        i.add(new Ingredient("Beef"));
+        i.add(new Ingredient("lettuce"));
+        i.add(new Ingredient("onions"));
+        i.add(new Ingredient("Vegan patty"));
+        i.add(new Ingredient("Burger bun"));
+        i.add(new Ingredient("Olive oil"));
+        i.add(new Ingredient("Salt"));
+        i.add(new Ingredient("Pepper"));
+        i.add(new Ingredient("Garlic"));
+        i.add(new Ingredient("Strawberry"));
+        i.add(new Ingredient("Watermelon"));
+        i.add(new Ingredient("Blueberry"));
+        i.add(new Ingredient("Apple"));
+        i.add(new Ingredient("Orange"));
+        i.add(new Ingredient("Pinapple"));
+        i.add(new Ingredient("Ketchup"));
+        i.add(new Ingredient("Potato"));
+        i.add(new Ingredient("Sweet Potato"));
+        
         
         return i;
         
